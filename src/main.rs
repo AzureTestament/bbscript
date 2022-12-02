@@ -30,7 +30,7 @@ fn main() {
 }
 
 #[derive(Parser)]
-#[clap(version = crate_version!(), author = "Made by Pangaea")]
+#[clap(version = crate_version!(), author = "Made by Pangaea, edited by Ryn (WistfulHopes)")]
 #[clap(color = clap::ColorChoice::Never)]
 #[clap(arg_required_else_help(true), subcommand_required(true))]
 struct MainCli {
@@ -44,15 +44,15 @@ struct MainCli {
     command: SubCmd,
 }
 
-/// Parses BBScript into an easily moddable format that can be rebuilt into usable BBScript
+/// A rebuilder and parser for Night Sky Engine scripts
 #[derive(Subcommand)]
 enum SubCmd {
-    /// Parses BBScript files and outputs them to a readable format
+    /// Parses NSScript files and outputs them to a readable format
     Parse {
         /// File name of a config within the game DB folder
         #[clap(name = "GAME")]
         game: String,
-        /// BBScript file to parse into readable format
+        /// NSScript file to parse into readable format
         #[clap(name = "INPUT", parse(from_os_str))]
         input: PathBuf,
         /// File to write readable script to as output
@@ -68,7 +68,7 @@ enum SubCmd {
         #[clap(short, long, parse(try_from_str = parse_hex))]
         end_offset: Option<usize>,
     },
-    /// Rebuilds readable BBScript into BBScript usable by games
+    /// Rebuilds readable NSScript into NSScript usable by games
     Rebuild {
         /// File name of a config within the game DB folder
         #[clap(name = "GAME")]

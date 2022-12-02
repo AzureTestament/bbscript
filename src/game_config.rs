@@ -20,6 +20,8 @@ pub enum ArgType {
     String16,
     /// A 32-byte string
     String32,
+    /// A 64-byte string
+    String64,
     Number,
     /// A named enum, the name provides access to a [`BiMap<String, i32>`]
     Enum(String),
@@ -32,6 +34,7 @@ pub enum ArgType {
 }
 
 impl ArgType {
+    pub(crate) const STRING64_SIZE: usize = 0x40;
     pub(crate) const STRING32_SIZE: usize = 0x20;
     pub(crate) const STRING16_SIZE: usize = 0x10;
 
@@ -45,6 +48,7 @@ impl ArgType {
             Enum(_) => std::mem::size_of::<BBSNumber>(),
             String16 => 0x10,
             String32 => 0x20,
+            String64 => 0x40,
             AccessedValue => std::mem::size_of::<BBSNumber>() * 2,
         }
     }

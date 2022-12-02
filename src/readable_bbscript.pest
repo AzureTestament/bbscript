@@ -15,6 +15,7 @@ args = { arg ~ ("," ~ arg)* ~ ","? }
 arg = {
   "s16'" ~ string16 ~ "'"
 | "s32'" ~ string32 ~ "'"
+| "s64'" ~ string64 ~ "'"
 | "Mem(" ~ (named_var | var_id) ~ ")"
 | "Val(" ~ tagged_value ~ ")"
 | "BadTag(" ~ unknown_tag ~ "," ~ tagged_value ~ ")"
@@ -29,6 +30,10 @@ string16 = @{
 
 string32 = @{
   string_char{, 32}
+}
+
+string64 = @{
+  string_char{, 64}
 }
 
 named_var = @{

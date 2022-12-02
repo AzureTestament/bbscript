@@ -18,6 +18,7 @@ pub enum ArgValue {
     Number(BBSNumber),
     String16(String),
     String32(String),
+    String64(String),
     AccessedValue(TaggedValue),
     Enum(String, BBSNumber),
 }
@@ -36,6 +37,7 @@ fn arg_to_string(config: &ScriptConfig, arg: &ArgValue) -> Result<String, BBScri
         ArgValue::Number(num) => Ok(format!("{num}")),
         ArgValue::String16(s) => Ok(format!("s16'{s}'")),
         ArgValue::String32(s) => Ok(format!("s32'{s}'")),
+        ArgValue::String64(s) => Ok(format!("s64'{s}'")),
         ArgValue::AccessedValue(_tagged @ TaggedValue::Improper { tag, value }) => {
             Ok(format!("BadTag({tag}, {value})"))
         }
@@ -114,7 +116,7 @@ impl ScriptConfig {
     }
 
     pub fn parse<T: Into<Bytes>>(&self, input: T) -> Result<Vec<InstructionValue>, BBScriptError> {
-        const JUMP_ENTRY_LENGTH: usize = 0x24;
+        const JUMP_ENTRY_LENGTH: usize = 0x44;
 
         let mut input: Bytes = input.into();
 
@@ -256,6 +258,12 @@ impl ScriptConfig {
             }
             ArgType::String32 => {
                 let mut buf = [0; ArgType::STRING32_SIZE];
+                input.copy_to_slice(&mut buf);
+
+                ArgValue::String32(process_string_buf(&buf))
+            }
+            ArgType::String64 => {
+                let mut buf = [0; ArgType::STRING64_SIZE];
                 input.copy_to_slice(&mut buf);
 
                 ArgValue::String32(process_string_buf(&buf))

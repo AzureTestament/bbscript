@@ -10,3 +10,12 @@ Cargo.lock
 **/*.rs.bk
 *.rbs
 test_data/*
+nss_test/NSS_EstherObj.nss
+nss_test/NSS_EstherObj.bbs
+nss_test/NSS_Esther.nss
+nss_test/NSS_Esther.bbs
+nss_test/NSS_Common.nss
+nss_test/NSS_Common.bbs
+nightskyscript.exe
+nightskyscript.rar
+.vscode/launch.json

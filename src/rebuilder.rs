@@ -44,7 +44,7 @@ impl JumpTable {
     #[inline]
     pub fn add_table_entry(&mut self, id: u32, offset: u32, jump_name: &Bytes) {
         assert!(self.is_entry_id(id));
-        assert!(jump_name.len() == ArgType::STRING32_SIZE);
+        assert!(jump_name.len() == ArgType::STRING64_SIZE);
 
         let table = self.entries.entry(id).or_default();
 
@@ -53,7 +53,7 @@ impl JumpTable {
     }
 
     pub fn to_table_bytes(mut self) -> Vec<u8> {
-        const JUMP_ENTRY_LENGTH: usize = 0x24;
+        const JUMP_ENTRY_LENGTH: usize = 0x44;
         let mut result = Vec::new();
 
         for id in &self.id_list {
@@ -125,7 +125,7 @@ fn assemble_script(program: Vec<BBSFunction>, db: &ScriptConfig) -> Result<Bytes
         }
 
         if jump_tables.is_entry_id(instruction_info.id()) {
-            if let Some(ParserValue::String32(name)) = instruction.args.get(0) {
+            if let Some(ParserValue::String64(name)) = instruction.args.get(0) {
                 jump_tables.add_table_entry(instruction_info.id(), offset, name);
             }
         }
@@ -139,7 +139,7 @@ fn assemble_script(program: Vec<BBSFunction>, db: &ScriptConfig) -> Result<Bytes
             );
 
             match arg {
-                ParserValue::String32(string) | ParserValue::String16(string) => {
+                ParserValue::String64(string) | ParserValue::String32(string) | ParserValue::String16(string) => {
                     script_buffer.append(&mut string.to_vec())
                 }
                 ParserValue::Raw(data) => script_buffer.append(&mut data.to_vec()),
@@ -217,6 +217,7 @@ impl BBSFunction {
             .args
             .iter()
             .map(|arg| match arg {
+                ParserValue::String64(_) => 64,
                 ParserValue::String32(_) => 32,
                 ParserValue::String16(_) => 16,
                 ParserValue::Raw(bytes) => bytes.len(),
@@ -235,6 +236,7 @@ impl BBSFunction {
 
 #[derive(Debug)]
 enum ParserValue {
+    String64(Bytes),
     String32(Bytes),
     String16(Bytes),
     Named(String),
@@ -250,6 +252,7 @@ impl ParserValue {
     pub fn to_arg_type(&self) -> ArgType {
         use ArgType::*;
         match self {
+            ParserValue::String64(_) => String64,
             ParserValue::String32(_) => String32,
             ParserValue::String16(_) => String16,
             ParserValue::Named(_) => panic!("this should never happen"),
@@ -306,6 +309,7 @@ impl BBSParser {
 
     fn arg(input: Node) -> PResult<ParserValue> {
         Ok(match_nodes!(input.into_children();
+            [string64(string)] => ParserValue::String64(string),
             [string32(string)] => ParserValue::String32(string),
             [string16(string)] => ParserValue::String16(string),
             [named_var(string)] => ParserValue::NamedMem(string),
@@ -316,6 +320,10 @@ impl BBSParser {
             [raw_data(data)] => ParserValue::Raw(data),
             [num(val)] => ParserValue::Number(val),
         ))
+    }
+
+    fn string64(input: Node) -> PResult<Bytes> {
+        Ok(string_to_bytes_of_size(input.as_str(), 64))
     }
 
     fn string32(input: Node) -> PResult<Bytes> {
