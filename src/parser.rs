@@ -266,7 +266,7 @@ impl ScriptConfig {
                 let mut buf = [0; ArgType::STRING64_SIZE];
                 input.copy_to_slice(&mut buf);
 
-                ArgValue::String32(process_string_buf(&buf))
+                ArgValue::String64(process_string_buf(&buf))
             }
             ArgType::Number => ArgValue::Number(input.get_i32_le()),
             ArgType::Enum(s) => ArgValue::Enum(s.clone(), input.get_i32_le()),
