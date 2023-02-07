@@ -1,0 +1,16 @@
+BeginSubroutine: s64'MatchInit'
+  EndSubroutine: 
+
+BeginState: s64'Stand'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_stand_00', 0
+    SetCel: s64'Esther_stand_01', 8
+    SetCel: s64'Esther_stand_02', 16
+    SetCel: s64'Esther_stand_03', 24
+    SetCel: s64'Esther_stand_04', 32
+    SetCel: s64'Esther_stand_05', 40
+    EndLabel: 48
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 

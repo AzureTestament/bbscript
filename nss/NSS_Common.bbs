@@ -1,0 +1,17 @@
+BeginSubroutine: s64'CmnMatchInit'
+  BeginStateDefine: s64'Stand'
+    SetEntryState: (Standing)
+    MakeInput:
+    AddInputCondition: 
+    SetStateType: (Standing)
+    EndStateDefine: 
+  EndSubroutine: 
+  
+BeginState: s64'Stand'
+  OnEnter: 
+    SetSpeedX: Val(0)
+    EnableAll: 
+    EnableFlip: 1
+    EnableState: (Crouching)
+    EndBlock: 
+  EndState: 
