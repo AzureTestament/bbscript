@@ -23,6 +23,16 @@ BeginSubroutine: s64'CmnMatchInit'
     MakeInputLenience: 6
     MakeInputMethod: (Strict)
     AddInputCondition: 
+    AddInputConditionList: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputLeft)
+    MakeInputLenience: 8
+    AddInputCondition: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputDash)
+    MakeInputLenience: 8
+    MakeInputMethod: (Once)
+    AddInputCondition: 
     SetStateType: (BackwardDash)
     EndStateDefine: 
   BeginStateDefine: s64'ForwardWalk'
@@ -42,6 +52,16 @@ BeginSubroutine: s64'CmnMatchInit'
     MakeInputSequenceBitmask: (InputRight)
     MakeInputLenience: 6
     MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddInputConditionList: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputLenience: 8
+    AddInputCondition: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputDash)
+    MakeInputLenience: 8
+    MakeInputMethod: (Once)
     AddInputCondition: 
     SetStateType: (ForwardDash)
     EndStateDefine: 
@@ -81,7 +101,7 @@ BeginSubroutine: s64'CmnMatchInit'
     MakeInput:
     MakeInputSequenceBitmask: (InputUpLeft)
     MakeInputMethod: (Strict)
-    AddInputCondition:     
+    AddInputCondition:
     SetStateType: (BackwardJump)
     EndStateDefine: 
   BeginStateDefine: s64'FJump'
@@ -129,6 +149,25 @@ BeginSubroutine: s64'CmnMatchInit'
     MakeInputLenience: 6
     MakeInputMethod: (Strict)
     AddInputCondition: 
+    AddInputConditionList: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputUpLeft)
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputLeft)
+    MakeInputLenience: 6
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddInputConditionList: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputLeft)
+    MakeInputLenience: 8
+    AddInputCondition: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputDash)
+    MakeInputLenience: 8
+    MakeInputMethod: (Once)
+    AddInputCondition: 
     AddStateCondition: (AirDashOk)
     AddStateCondition: (AirDashMinimumHeight)
     SetStateType: (BackwardAirDash)
@@ -143,6 +182,25 @@ BeginSubroutine: s64'CmnMatchInit'
     MakeInputLenience: 6
     MakeInputMethod: (Strict)
     AddInputCondition: 
+    AddInputConditionList: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputUpRight)
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputLenience: 6
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddInputConditionList: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputLenience: 8
+    AddInputCondition: 
+    MakeInput:
+    MakeInputSequenceBitmask: (InputDash)
+    MakeInputLenience: 8
+    MakeInputMethod: (Once)
+    AddInputCondition: 
     AddStateCondition: (AirDashOk)
     AddStateCondition: (AirDashMinimumHeight)
     SetStateType: (ForwardAirDash)
@@ -156,7 +214,7 @@ BeginSubroutine: s64'CmnMatchInit'
     SetEntryState: (Jumping)
     MakeInput:
     MakeInputSequenceBitmask: (InputUp)
-    MakeInputMethod: (Strict)
+    MakeInputMethod: (OnceStrict)
     AddInputCondition: 
     AddStateCondition: (AirJumpOk)
     AddStateCondition: (AirJumpMinimumHeight)
@@ -166,7 +224,7 @@ BeginSubroutine: s64'CmnMatchInit'
     SetEntryState: (Jumping)
     MakeInput:
     MakeInputSequenceBitmask: (InputUpLeft)
-    MakeInputMethod: (Strict)
+    MakeInputMethod: (OnceStrict)
     AddInputCondition: 
     AddStateCondition: (AirJumpOk)
     AddStateCondition: (AirJumpMinimumHeight)
@@ -176,7 +234,7 @@ BeginSubroutine: s64'CmnMatchInit'
     SetEntryState: (Jumping)
     MakeInput:
     MakeInputSequenceBitmask: (InputUpRight)
-    MakeInputMethod: (Strict)
+    MakeInputMethod: (OnceStrict)
     AddInputCondition: 
     AddStateCondition: (AirJumpOk)
     AddStateCondition: (AirJumpMinimumHeight)
@@ -343,7 +401,6 @@ BeginState: s64'ForwardDashStop'
 BeginState: s64'Stand2Crouch'
   OnEnter: 
     EnableState: (Block)
-    EnableState: (Parry)
     EndBlock:
   OnUpdate:
     CheckInputRaw: (InputDown)
@@ -554,9 +611,6 @@ BeginState: s64'BackAirDash'
       SetSpeedX: Mem(StoredRegister)      
       EndIf:
     EndBlock: 
-  OnExit:
-    EnableFlip: 1
-    EndBlock:
   EndState: 
   
 BeginState: s64'ForwardAirDash'
@@ -573,12 +627,9 @@ BeginState: s64'ForwardAirDash'
     If: Mem(DefaultCommonAction)
       SetSpeedY: Val(0)
       GetPlayerStats: (PLY_FAirDashSpeed)
-      SetSpeedX: Mem(StoredRegister)      
+      SetSpeedX: Mem(StoredRegister)
       EndIf:
     EndBlock: 
-  OnExit:
-    EnableFlip: 1
-    EndBlock:
   EndState: 
 
 BeginState: s64'JumpLanding'
