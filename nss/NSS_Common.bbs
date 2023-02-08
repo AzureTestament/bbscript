@@ -50,10 +50,137 @@ BeginSubroutine: s64'CmnMatchInit'
     SetStateType: (Standing)
     IsFollowupMove: 1
     EndStateDefine: 
+  BeginStateDefine: s64'Stand2Crouch'
+    SetEntryState: (Crouching)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputDown)
+    MakeInputMethod: (Once)
+    AddInputCondition: 
+    SetStateType: (Crouching)
+    EndStateDefine: 
+  BeginStateDefine: s64'Crouch'
+    SetEntryState: (Crouching)
+    SetStateType: (Crouching)
+    IsFollowupMove: 1
+    EndStateDefine: 
+  BeginStateDefine: s64'Crouch2Stand'
+    SetEntryState: (Standing)
+    SetStateType: (Standing)
+    IsFollowupMove: 1
+    EndStateDefine: 
+  BeginStateDefine: s64'VJump'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputUp)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (NeutralJump)
+    EndStateDefine: 
+  BeginStateDefine: s64'BJump'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputUpLeft)
+    MakeInputMethod: (Strict)
+    AddInputCondition:     
+    SetStateType: (BackwardJump)
+    EndStateDefine: 
+  BeginStateDefine: s64'FJump'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputUpRight)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (ForwardJump)
+    EndStateDefine: 
+  BeginStateDefine: s64'VSuperJump'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputDown)
+    MakeInputSequenceBitmask: (InputUp)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (NeutralJump)
+    EndStateDefine: 
+  BeginStateDefine: s64'BSuperJump'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputDown)
+    MakeInputSequenceBitmask: (InputUpLeft)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (BackwardJump)
+    EndStateDefine: 
+  BeginStateDefine: s64'FSuperJump'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputDown)
+    MakeInputSequenceBitmask: (InputUpRight)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (ForwardJump)
+    EndStateDefine: 
+  BeginStateDefine: s64'BackAirDash'
+    SetEntryState: (Jumping)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputLeft)
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputLeft)
+    MakeInputLenience: 6
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddStateCondition: (AirDashOk)
+    AddStateCondition: (AirDashMinimumHeight)
+    SetStateType: (BackwardAirDash)
+    EndStateDefine: 
+  BeginStateDefine: s64'ForwardAirDash'
+    SetEntryState: (Jumping)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputLenience: 6
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddStateCondition: (AirDashOk)
+    AddStateCondition: (AirDashMinimumHeight)
+    SetStateType: (ForwardAirDash)
+    EndStateDefine: 
   BeginStateDefine: s64'JumpLanding'
     SetEntryState: (Standing)
     SetStateType: (Standing)
     IsFollowupMove: 1
+    EndStateDefine: 
+  BeginStateDefine: s64'VAirJump'
+    SetEntryState: (Jumping)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputUp)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddStateCondition: (AirJumpOk)
+    AddStateCondition: (AirJumpMinimumHeight)
+    SetStateType: (NeutralJump)
+    EndStateDefine: 
+  BeginStateDefine: s64'BAirJump'
+    SetEntryState: (Jumping)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputUpLeft)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddStateCondition: (AirJumpOk)
+    AddStateCondition: (AirJumpMinimumHeight)
+    SetStateType: (BackwardJump)
+    EndStateDefine: 
+  BeginStateDefine: s64'FAirJump'
+    SetEntryState: (Jumping)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputUpRight)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddStateCondition: (AirJumpOk)
+    AddStateCondition: (AirJumpMinimumHeight)
+    SetStateType: (ForwardJump)
     EndStateDefine: 
   EndSubroutine: 
   
@@ -79,25 +206,25 @@ BeginState: s64'Stand'
 BeginState: s64'BackWalk'
   OnEnter: 
     GetPlayerStats: (PLY_BWalkSpeed)
-    SetSpeedX: Mem(VAL_StoredRegister)
+    SetSpeedX: Mem(StoredRegister)
     EnableState: (Block)
     EndBlock:
   OnUpdate:
-    If: Mem(VAL_ActionTime)
+    If: Mem(ActionTime)
       MakeInput:
       MakeInputSequenceBitmask: (InputLeft)
       MakeInputLenience: 1
       MakeInputAllowDisable: 0
       MakeInputMethod: (Strict)
       CheckInput: 
-      IfNot: Mem(VAL_StoredRegister)
+      IfNot: Mem(StoredRegister)
         JumpToState: s64'Stand'
         EndIf:
       EndIf:
     EndBlock:
   OnExit:
     DisableState: (Block)
-    IfNot: Mem(VAL_IsStunned)
+    IfNot: Mem(IsStunned)
       HaltMomentum:
       EnableState: (Standing)
       DisableState: (Crouching)
@@ -110,11 +237,11 @@ BeginState: s64'BackDash'
     DisableAll:
     ClearInertia:
     GetPlayerStats: (PLY_BDashHeight)
-    SetSpeedY: Mem(VAL_StoredRegister)
+    SetSpeedY: Mem(StoredRegister)
     GetPlayerStats: (PLY_BDashSpeed)
-    SetSpeedX: Mem(VAL_StoredRegister)
+    SetSpeedX: Mem(StoredRegister)
     GetPlayerStats: (PLY_BDashGravity)
-    SetGravity: Mem(VAL_StoredRegister)
+    SetGravity: Mem(StoredRegister)
     EnableFlip: 0
     EndBlock:
   OnExit:
@@ -125,23 +252,23 @@ BeginState: s64'BackDash'
 BeginState: s64'ForwardWalk'
   OnEnter: 
     GetPlayerStats: (PLY_FWalkSpeed)
-    SetSpeedX: Mem(VAL_StoredRegister)
+    SetSpeedX: Mem(StoredRegister)
     EndBlock:
   OnUpdate:
-    If: Mem(VAL_ActionTime)
+    If: Mem(ActionTime)
       MakeInput:
       MakeInputSequenceBitmask: (InputRight)
       MakeInputLenience: 1
       MakeInputAllowDisable: 0
       MakeInputMethod: (Strict)
       CheckInput: 
-      IfNot: Mem(VAL_StoredRegister)
+      IfNot: Mem(StoredRegister)
         JumpToState: s64'Stand'
         EndIf:
       EndIf:
     EndBlock:
   OnExit:
-    IfNot: Mem(VAL_IsStunned)
+    IfNot: Mem(IsStunned)
       HaltMomentum:
       EnableState: (Standing)
       DisableState: (Crouching)
@@ -152,30 +279,30 @@ BeginState: s64'ForwardWalk'
 BeginState: s64'ForwardDash'
   OnEnter: 
     CallSubroutine: s64'CmnDisableGroundMovement'
-    If: Mem(VAL_DefaultCommonAction)
+    If: Mem(DefaultCommonAction)
       GetPlayerStats: (PLY_FDashInitSpeed)
-      SetSpeedX: Mem(VAL_StoredRegister)
+      SetSpeedX: Mem(StoredRegister)
       EnableInertia: 0
       EnableFlip: 0
       EndIf:
   OnUpdate:
-    If: Mem(VAL_DefaultCommonAction)
+    If: Mem(DefaultCommonAction)
       GetPlayerStats: (PLY_FDashAccel)
-      AddSpeedX: Mem(VAL_StoredRegister)
+      AddSpeedX: Mem(StoredRegister)
       GetPlayerStats: (PLY_FDashFriction)
-      ModifyInternalValueAndSave: (OP_Div), Mem(VAL_SpeedX), Mem(VAL_StoredRegister), Mem(VAL_StoredRegister)
-      ModifyInternalValue: (OP_Sub), Mem(VAL_SpeedX), Mem(VAL_StoredRegister)
-      SetInertia: Mem(VAL_SpeedX)
+      ModifyInternalValueAndSave: (OP_Div), Mem(SpeedX), Mem(StoredRegister), Mem(StoredRegister)
+      ModifyInternalValue: (OP_Sub), Mem(SpeedX), Mem(StoredRegister)
+      SetInertia: Mem(SpeedX)
       GetPlayerStats: (PLY_FDashMaxSpeed)
-      IfOperation: (OP_IsGreater), Mem(VAL_SpeedX), Mem(VAL_StoredRegister)
+      IfOperation: (OP_IsGreater), Mem(SpeedX), Mem(StoredRegister)
         GetPlayerStats: (PLY_FDashMaxSpeed)
-        SetSpeedX: Mem(VAL_StoredRegister)
+        SetSpeedX: Mem(StoredRegister)
         EndIf:
-      IfOperation: (OP_IsGreater), Mem(VAL_ActionTime), Val(12)
+      IfOperation: (OP_IsGreater), Mem(ActionTime), Val(12)
         CheckInputRaw: (InputRight)
-        IfNot: Mem(VAL_StoredRegister)
+        IfNot: Mem(StoredRegister)
           CheckInputRaw: (InputUp)
-          IfNot: Mem(VAL_StoredRegister)
+          IfNot: Mem(StoredRegister)
             JumpToState: s64'ForwardDashStop'
             EndIf:
           EndIf:
@@ -184,7 +311,7 @@ BeginState: s64'ForwardDash'
     EndBlock:
   OnExit:
     EnableInertia: 1
-    IfNot: Mem(VAL_IsStunned)
+    IfNot: Mem(IsStunned)
       SetSpeedX: Val(0)
       EnableFlip: 1
       EnableAll:
@@ -199,16 +326,257 @@ BeginState: s64'ForwardDashStop'
     EnableState: (Jumping)
     EndBlock:
   OnUpdate:
-    IfOperation: (OP_IsEqual), Mem(VAL_ActionTime), Val(5)
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(5)
       DisableState: (Jumping)
       EndIf:
-    IfOperation: (OP_IsEqual), Mem(VAL_ActionTime), Val(12)
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(12)
       EnableAll:
       DisableState: (Standing)
       EndIf:
     EndBlock:
   OnExit:
     EnableAll:
+    EnableFlip: 1
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'Stand2Crouch'
+  OnEnter: 
+    EnableState: (Block)
+    EnableState: (Parry)
+    EndBlock:
+  OnUpdate:
+    CheckInputRaw: (InputDown)
+    IfNot: Mem(StoredRegister)
+      JumpToState: s64'Crouch2Stand'
+      EndIf:
+    EndBlock:
+  OnExit:
+    DisableState: (Block)
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'Crouch'
+  OnEnter: 
+    EnableState: (Block)
+    EndBlock:
+  OnUpdate:
+    CheckInputRaw: (InputDown)
+    IfNot: Mem(StoredRegister)
+      JumpToState: s64'Crouch2Stand'
+      EndIf:
+    EndBlock:
+  OnExit:
+    DisableState: (Block)
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'Crouch2Stand'
+  OnEnter: 
+    EnableState: (Crouching)
+    DisableState: (Standing)
+    EndBlock:
+  OnExit:
+    EnableState: (Standing)
+    EndBlock:
+  EndState: 
+
+BeginState: s64'VJump'
+  OnEnter: 
+    DisableAll: 
+    EnableFlip: 0
+    EndBlock: 
+  OnUpdate: 
+    IfOperation: (OP_IsGreater), Mem(PosY), Val(0)
+      EnableAll: 
+      EndIf: 
+    Else:
+      IfOperation: (OP_IsEqual), Mem(ActionTime), Val(4)
+        GetPlayerStats: (PLY_JumpHeight)
+        SetSpeedY: Mem(StoredRegister)
+        SetSpeedX: Val(0)
+        GetPlayerStats: (PLY_JumpGravity)
+        SetGravity: Mem(StoredRegister)
+        EndIf: 
+      EndElse:
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(5)
+      EnableAll: 
+      EndIf: 
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'BJump'
+  OnEnter: 
+    DisableAll: 
+    EnableFlip: 0
+    ClearInertia:
+    EndBlock: 
+  OnUpdate: 
+    IfOperation: (OP_IsGreater), Mem(PosY), Val(0)
+      EnableAll: 
+      EndIf: 
+    Else:
+      IfOperation: (OP_IsEqual), Mem(ActionTime), Val(4)
+        GetPlayerStats: (PLY_JumpHeight)
+        SetSpeedY: Mem(StoredRegister)
+        GetPlayerStats: (PLY_BJumpSpeed)
+        SetSpeedX: Mem(StoredRegister)
+        GetPlayerStats: (PLY_JumpGravity)
+        SetGravity: Mem(StoredRegister)
+        EndIf: 
+      EndElse:
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(5)
+      EnableAll: 
+      EndIf: 
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'FJump'
+  OnEnter: 
+    DisableAll: 
+    EnableFlip: 0
+    EndBlock: 
+  OnUpdate: 
+    IfOperation: (OP_IsGreater), Mem(PosY), Val(0)
+      EnableAll: 
+      EndIf: 
+    Else:
+      IfOperation: (OP_IsEqual), Mem(ActionTime), Val(4)
+        GetPlayerStats: (PLY_JumpHeight)
+        SetSpeedY: Mem(StoredRegister)
+        GetPlayerStats: (PLY_FJumpSpeed)
+        SetSpeedX: Mem(StoredRegister)
+        GetPlayerStats: (PLY_JumpGravity)
+        SetGravity: Mem(StoredRegister)
+        EndIf: 
+      EndElse:
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(5)
+      EnableAll: 
+      EndIf: 
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'VSuperJump'
+  OnEnter: 
+    DisableAll: 
+    EndBlock: 
+  OnUpdate: 
+    IfOperation: (OP_IsGreater), Mem(PosY), Val(0)
+      EnableAll: 
+      EndIf: 
+    Else:
+      IfOperation: (OP_IsEqual), Mem(ActionTime), Val(4)
+        GetPlayerStats: (PLY_SuperJumpHeight)
+        SetSpeedY: Mem(StoredRegister)
+        SetSpeedX: Val(0)
+        GetPlayerStats: (PLY_SuperJumpGravity)
+        SetGravity: Mem(StoredRegister)
+        EndIf: 
+      EndElse:
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(5)
+      EnableAll: 
+      EndIf: 
+    EndBlock: 
+  OnExit:
+    EnableFlip: 0
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'BSuperJump'
+  OnEnter: 
+    DisableAll: 
+    ClearInertia:
+    EndBlock: 
+  OnUpdate: 
+    IfOperation: (OP_IsGreater), Mem(PosY), Val(0)
+      EnableAll: 
+      EndIf: 
+    Else:
+      IfOperation: (OP_IsEqual), Mem(ActionTime), Val(4)
+        GetPlayerStats: (PLY_SuperJumpHeight)
+        SetSpeedY: Mem(StoredRegister)
+        GetPlayerStats: (PLY_BSuperJumpSpeed)
+        SetSpeedX: Mem(StoredRegister)
+        GetPlayerStats: (PLY_SuperJumpGravity)
+        SetGravity: Mem(StoredRegister)
+        EndIf: 
+      EndElse:
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(5)
+      EnableAll: 
+      EndIf: 
+    EndBlock: 
+  OnExit:
+    EnableFlip: 0
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'FSuperJump'
+  OnEnter: 
+    DisableAll: 
+    EndBlock: 
+  OnUpdate: 
+    IfOperation: (OP_IsGreater), Mem(PosY), Val(0)
+      EnableAll: 
+      EndIf: 
+    Else:
+      IfOperation: (OP_IsEqual), Mem(ActionTime), Val(4)
+        GetPlayerStats: (PLY_SuperJumpHeight)
+        SetSpeedY: Mem(StoredRegister)
+        GetPlayerStats: (PLY_FSuperJumpSpeed)
+        SetSpeedX: Mem(StoredRegister)
+        GetPlayerStats: (PLY_SuperJumpGravity)
+        SetGravity: Mem(StoredRegister)
+        EndIf: 
+      EndElse:
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(5)
+      EnableAll: 
+      EndIf: 
+    EndBlock: 
+  OnExit:
+    EnableFlip: 0
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'BackAirDash'
+  OnEnter: 
+    AddAirDash: -1
+    AddAirJump: -1
+    EnableFlip: 0
+    If: Mem(DefaultCommonAction)
+      ClearInertia: 
+      SetAirDashTimer: 0
+      EndIf:
+    EndBlock: 
+  OnUpdate: 
+    If: Mem(DefaultCommonAction)
+      SetSpeedY: Val(0)
+      GetPlayerStats: (PLY_BAirDashSpeed)
+      SetSpeedX: Mem(StoredRegister)      
+      EndIf:
+    EndBlock: 
+  OnExit:
+    EnableFlip: 1
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'ForwardAirDash'
+  OnEnter: 
+    AddAirDash: -1
+    AddAirJump: -1
+    EnableFlip: 0
+    If: Mem(DefaultCommonAction)
+      ClearInertia: 
+      SetAirDashTimer: 1
+      EndIf:
+    EndBlock: 
+  OnUpdate: 
+    If: Mem(DefaultCommonAction)
+      SetSpeedY: Val(0)
+      GetPlayerStats: (PLY_FAirDashSpeed)
+      SetSpeedX: Mem(StoredRegister)      
+      EndIf:
+    EndBlock: 
+  OnExit:
     EnableFlip: 1
     EndBlock:
   EndState: 
@@ -221,7 +589,7 @@ BeginState: s64'JumpLanding'
     EnableFlip: 1
     EndBlock: 
   OnUpdate: 
-    IfOperation: (OP_IsEqual), Mem(VAL_ActionTime), Val(4)
+    IfOperation: (OP_IsEqual), Mem(ActionTime), Val(4)
       EnableAll:
       DisableState: (Standing)
       EndIf: 
@@ -229,4 +597,51 @@ BeginState: s64'JumpLanding'
   OnExit:
     EnableState: (Standing)
     EndBlock:
+  EndState: 
+  
+BeginState: s64'VAirJump'
+  OnEnter: 
+    AddAirJump: -1
+    AddAirDash: -1
+    EnableFlip: 0
+    EnableAll: 
+    GetPlayerStats: (PLY_JumpHeight)
+    SetSpeedY: Mem(StoredRegister)
+    SetSpeedX: Val(0)
+    GetPlayerStats: (PLY_JumpGravity)
+    SetGravity: Mem(StoredRegister)
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'BAirJump'
+  OnEnter: 
+    ClearInertia:
+    AddAirJump: -1
+    AddAirDash: -1
+    EnableFlip: 0
+    EnableAll: 
+    GetPlayerStats: (PLY_JumpHeight)
+    SetSpeedY: Mem(StoredRegister)
+    GetPlayerStats: (PLY_BJumpSpeed)
+    SetSpeedX: Mem(StoredRegister)
+    GetPlayerStats: (PLY_JumpGravity)
+    SetGravity: Mem(StoredRegister)
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'FAirJump'
+  OnEnter: 
+    AddAirJump: -1
+    AddAirDash: -1
+    EnableFlip: 0
+    EnableAll: 
+    Else:
+      EndElse:
+    GetPlayerStats: (PLY_JumpHeight)
+    SetSpeedY: Mem(StoredRegister)
+    GetPlayerStats: (PLY_FJumpSpeed)
+    SetSpeedX: Mem(StoredRegister)
+    GetPlayerStats: (PLY_JumpGravity)
+    SetGravity: Mem(StoredRegister)
+    EndBlock: 
   EndState: 
