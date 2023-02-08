@@ -5,7 +5,67 @@ BeginSubroutine: s64'CmnMatchInit'
     AddInputCondition: 
     SetStateType: (Standing)
     EndStateDefine: 
+  BeginStateDefine: s64'BackWalk'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputLeft)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (BackwardWalk)
+    EndStateDefine: 
+  BeginStateDefine: s64'BackDash'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputLeft)
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputLeft)
+    MakeInputLenience: 6
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (BackwardDash)
+    EndStateDefine: 
+  BeginStateDefine: s64'ForwardWalk'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (ForwardWalk)
+    EndStateDefine: 
+  BeginStateDefine: s64'ForwardDash'
+    SetEntryState: (Standing)
+    MakeInput:
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputLenience: 6
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    SetStateType: (ForwardDash)
+    EndStateDefine: 
+  BeginStateDefine: s64'ForwardDashStop'
+    SetEntryState: (Standing)
+    SetStateType: (Standing)
+    IsFollowupMove: 1
+    EndStateDefine: 
+  BeginStateDefine: s64'JumpLanding'
+    SetEntryState: (Standing)
+    SetStateType: (Standing)
+    IsFollowupMove: 1
+    EndStateDefine: 
   EndSubroutine: 
+  
+BeginSubroutine: s64'CmnDisableGroundMovement'
+  DisableState: (Standing)
+  DisableState: (Crouching)
+  DisableState: (ForwardWalk)
+  DisableState: (BackwardWalk)
+  DisableState: (ForwardDash)
+  DisableState: (BackwardDash)
+  DisableState: (Tech)
+  EndSubroutine:
   
 BeginState: s64'Stand'
   OnEnter: 
@@ -14,4 +74,159 @@ BeginState: s64'Stand'
     EnableFlip: 1
     EnableState: (Crouching)
     EndBlock: 
+  EndState: 
+  
+BeginState: s64'BackWalk'
+  OnEnter: 
+    GetPlayerStats: (PLY_BWalkSpeed)
+    SetSpeedX: Mem(VAL_StoredRegister)
+    EnableState: (Block)
+    EndBlock:
+  OnUpdate:
+    If: Mem(VAL_ActionTime)
+      MakeInput:
+      MakeInputSequenceBitmask: (InputLeft)
+      MakeInputLenience: 1
+      MakeInputAllowDisable: 0
+      MakeInputMethod: (Strict)
+      CheckInput: 
+      IfNot: Mem(VAL_StoredRegister)
+        JumpToState: s64'Stand'
+        EndIf:
+      EndIf:
+    EndBlock:
+  OnExit:
+    DisableState: (Block)
+    IfNot: Mem(VAL_IsStunned)
+      HaltMomentum:
+      EnableState: (Standing)
+      DisableState: (Crouching)
+      EndIf:
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'BackDash'
+  OnEnter: 
+    DisableAll:
+    ClearInertia:
+    GetPlayerStats: (PLY_BDashHeight)
+    SetSpeedY: Mem(VAL_StoredRegister)
+    GetPlayerStats: (PLY_BDashSpeed)
+    SetSpeedX: Mem(VAL_StoredRegister)
+    GetPlayerStats: (PLY_BDashGravity)
+    SetGravity: Mem(VAL_StoredRegister)
+    EnableFlip: 0
+    EndBlock:
+  OnExit:
+    EnableFlip: 1
+    EndBlock:
+  EndState:
+  
+BeginState: s64'ForwardWalk'
+  OnEnter: 
+    GetPlayerStats: (PLY_FWalkSpeed)
+    SetSpeedX: Mem(VAL_StoredRegister)
+    EndBlock:
+  OnUpdate:
+    If: Mem(VAL_ActionTime)
+      MakeInput:
+      MakeInputSequenceBitmask: (InputRight)
+      MakeInputLenience: 1
+      MakeInputAllowDisable: 0
+      MakeInputMethod: (Strict)
+      CheckInput: 
+      IfNot: Mem(VAL_StoredRegister)
+        JumpToState: s64'Stand'
+        EndIf:
+      EndIf:
+    EndBlock:
+  OnExit:
+    IfNot: Mem(VAL_IsStunned)
+      HaltMomentum:
+      EnableState: (Standing)
+      DisableState: (Crouching)
+      EndIf:
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'ForwardDash'
+  OnEnter: 
+    CallSubroutine: s64'CmnDisableGroundMovement'
+    If: Mem(VAL_DefaultCommonAction)
+      GetPlayerStats: (PLY_FDashInitSpeed)
+      SetSpeedX: Mem(VAL_StoredRegister)
+      EnableInertia: 0
+      EnableFlip: 0
+      EndIf:
+  OnUpdate:
+    If: Mem(VAL_DefaultCommonAction)
+      GetPlayerStats: (PLY_FDashAccel)
+      AddSpeedX: Mem(VAL_StoredRegister)
+      GetPlayerStats: (PLY_FDashFriction)
+      ModifyInternalValueAndSave: (OP_Div), Mem(VAL_SpeedX), Mem(VAL_StoredRegister), Mem(VAL_StoredRegister)
+      ModifyInternalValue: (OP_Sub), Mem(VAL_SpeedX), Mem(VAL_StoredRegister)
+      SetInertia: Mem(VAL_SpeedX)
+      GetPlayerStats: (PLY_FDashMaxSpeed)
+      IfOperation: (OP_IsGreater), Mem(VAL_SpeedX), Mem(VAL_StoredRegister)
+        GetPlayerStats: (PLY_FDashMaxSpeed)
+        SetSpeedX: Mem(VAL_StoredRegister)
+        EndIf:
+      IfOperation: (OP_IsGreater), Mem(VAL_ActionTime), Val(12)
+        CheckInputRaw: (InputRight)
+        IfNot: Mem(VAL_StoredRegister)
+          CheckInputRaw: (InputUp)
+          IfNot: Mem(VAL_StoredRegister)
+            JumpToState: s64'ForwardDashStop'
+            EndIf:
+          EndIf:
+        EndIf:
+      EndIf:
+    EndBlock:
+  OnExit:
+    EnableInertia: 1
+    IfNot: Mem(VAL_IsStunned)
+      SetSpeedX: Val(0)
+      EnableFlip: 1
+      EnableAll:
+      EndIf:
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'ForwardDashStop'
+  OnEnter: 
+    SetSpeedX: Val(0)
+    DisableAll:
+    EnableState: (Jumping)
+    EndBlock:
+  OnUpdate:
+    IfOperation: (OP_IsEqual), Mem(VAL_ActionTime), Val(5)
+      DisableState: (Jumping)
+      EndIf:
+    IfOperation: (OP_IsEqual), Mem(VAL_ActionTime), Val(12)
+      EnableAll:
+      DisableState: (Standing)
+      EndIf:
+    EndBlock:
+  OnExit:
+    EnableAll:
+    EnableFlip: 1
+    EndBlock:
+  EndState: 
+
+BeginState: s64'JumpLanding'
+  OnEnter: 
+    DisableAll: 
+    HaltMomentum:
+    ClearInertia:
+    EnableFlip: 1
+    EndBlock: 
+  OnUpdate: 
+    IfOperation: (OP_IsEqual), Mem(VAL_ActionTime), Val(4)
+      EnableAll:
+      DisableState: (Standing)
+      EndIf: 
+    EndBlock: 
+  OnExit:
+    EnableState: (Standing)
+    EndBlock:
   EndState: 

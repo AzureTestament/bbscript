@@ -648,31 +648,41 @@
             size: 8,
             name: "MakeInputSequenceBitmask",
             codeBlock: NoBlock,
-            args: [],
+            args: [
+                Enum("InputFlags"),
+            ],
         ),
         912: (
             size: 8,
             name: "MakeInputLenience",
             codeBlock: NoBlock,
-            args: [],
+            args: [
+                Number,
+            ],
         ),
         913: (
             size: 8,
             name: "MakeInputImpreciseCount",
             codeBlock: NoBlock,
-            args: [],
+            args: [
+                Number,
+            ],
         ),
         914: (
             size: 8,
             name: "MakeInputAllowDisable",
             codeBlock: NoBlock,
-            args: [],
+            args: [
+                Number,
+            ],
         ),
-        914: (
+        915: (
             size: 8,
             name: "MakeInputMethod",
             codeBlock: NoBlock,
-            args: [],
+            args: [
+                Enum("InputMethod"),
+            ],
         ),
         1000: (
             size: 68,
