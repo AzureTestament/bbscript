@@ -523,7 +523,7 @@ BeginState: s64'ForwardDash'
         EndIf: 
       ModifyInternalValueAndSave: (Mod), Mem(ActionTime), Val(9), Mem(StoredRegister)
       IfOperation: (IsEqual), Mem(StoredRegister), Val(6)
-        CreateParticle: s64'cmn_dashsmoke', (Self), 0, 0, 0, 0, 0, 0
+        CreateParticle: s64'cmn_dashsmoke', (Self), 0, 0, 0
         EndIf: 
       IfOperation: (IsGreater), Mem(ActionTime), Val(12)
         CheckInputRaw: (InputRight)
@@ -639,7 +639,7 @@ BeginState: s64'VJump'
         SetSpeedX: Val(0)
         GetPlayerStats: (JumpGravity)
         SetGravity: Mem(StoredRegister)
-        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0, 0, 0, 0
+        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0
         EndIf: 
       EndElse: 
     IfOperation: (IsEqual), Mem(ActionTime), Val(5)
@@ -666,7 +666,7 @@ BeginState: s64'BJump'
         SetSpeedX: Mem(StoredRegister)
         GetPlayerStats: (JumpGravity)
         SetGravity: Mem(StoredRegister)
-        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0, 0, 0, 0
+        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0
         EndIf: 
       EndElse: 
     IfOperation: (IsEqual), Mem(ActionTime), Val(5)
@@ -692,7 +692,7 @@ BeginState: s64'FJump'
         SetSpeedX: Mem(StoredRegister)
         GetPlayerStats: (JumpGravity)
         SetGravity: Mem(StoredRegister)
-        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0, 0, 0, 0
+        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0
         EndIf: 
       EndElse: 
     IfOperation: (IsEqual), Mem(ActionTime), Val(5)
@@ -716,8 +716,8 @@ BeginState: s64'VSuperJump'
         SetSpeedX: Val(0)
         GetPlayerStats: (SuperJumpGravity)
         SetGravity: Mem(StoredRegister)
-        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0, 0, 0, 0
-        CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0, 0, 0, 0
+        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0
+        CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0
         EndIf: 
       EndElse: 
     IfOperation: (IsEqual), Mem(ActionTime), Val(5)
@@ -746,8 +746,8 @@ BeginState: s64'BSuperJump'
         SetSpeedX: Mem(StoredRegister)
         GetPlayerStats: (SuperJumpGravity)
         SetGravity: Mem(StoredRegister)
-        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0, 0, 0, 0
-        CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0, 0, 0, 0
+        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0
+        CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0
         EndIf: 
       EndElse: 
     IfOperation: (IsEqual), Mem(ActionTime), Val(5)
@@ -775,8 +775,8 @@ BeginState: s64'FSuperJump'
         SetSpeedX: Mem(StoredRegister)
         GetPlayerStats: (SuperJumpGravity)
         SetGravity: Mem(StoredRegister)
-        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0, 0, 0, 0
-        CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0, 0, 0, 0
+        CreateParticle: s64'cmn_jumpsmoke', (Self), 0, 0, 0
+        CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0
         EndIf: 
       EndElse: 
     IfOperation: (IsEqual), Mem(ActionTime), Val(5)
@@ -794,14 +794,15 @@ BeginState: s64'BackAirDash'
     AddAirJump: -1
     EnableFlip: 0
     ClearInertia: 
-    SetAirDashNoAttackTimer: 0
     If: Mem(DefaultCommonAction)
       SetAirDashTimer: 0
-      CreateParticle: s64'cmn_airbdash', (Self), 0, 0, 0, 0, 0, 0
+      SetAirDashNoAttackTimer: 0
+      CreateParticle: s64'cmn_airbdash', (Self), 0, 0, 0
       EndIf: 
     EndBlock: 
   OnUpdate: 
     If: Mem(DefaultCommonAction)
+      SetSpeedY: Val(0)
       GetPlayerStats: (BAirDashSpeed)
       SetSpeedX: Mem(StoredRegister)
       EndIf: 
@@ -817,11 +818,12 @@ BeginState: s64'ForwardAirDash'
     If: Mem(DefaultCommonAction)
       SetAirDashTimer: 1
       SetAirDashNoAttackTimer: 1
-      CreateParticle: s64'cmn_airfdash', (Self), 0, 0, 0, 0, 0, 0
+      CreateParticle: s64'cmn_airfdash', (Self), 0, 0, 0
       EndIf: 
     EndBlock: 
   OnUpdate: 
     If: Mem(DefaultCommonAction)
+      SetSpeedY: Val(0)
       GetPlayerStats: (FAirDashSpeed)
       SetSpeedX: Mem(StoredRegister)
       EndIf: 
@@ -867,7 +869,7 @@ BeginState: s64'VAirJump'
     SetSpeedX: Val(0)
     GetPlayerStats: (JumpGravity)
     SetGravity: Mem(StoredRegister)
-    CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0, 0, 0, 0
+    CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0
     EndBlock: 
   EndState: 
 
@@ -884,7 +886,7 @@ BeginState: s64'BAirJump'
     SetSpeedX: Mem(StoredRegister)
     GetPlayerStats: (JumpGravity)
     SetGravity: Mem(StoredRegister)
-    CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0, 0, 0, 0
+    CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0
     EndBlock: 
   EndState: 
 
@@ -900,7 +902,7 @@ BeginState: s64'FAirJump'
     SetSpeedX: Mem(StoredRegister)
     GetPlayerStats: (JumpGravity)
     SetGravity: Mem(StoredRegister)
-    CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0, 0, 0, 0
+    CreateParticle: s64'cmn_doublejump', (Self), 0, 0, 0
     EndBlock: 
   EndState: 
 

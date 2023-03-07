@@ -1,0 +1,365 @@
+BeginSubroutine: s64'MatchInit'
+  EndSubroutine: 
+
+BeginState: s64'Stand'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_stand_00', 0
+    SetCel: s64'Esther_stand_01', 8
+    SetCel: s64'Esther_stand_02', 16
+    SetCel: s64'Esther_stand_03', 24
+    SetCel: s64'Esther_stand_04', 32
+    SetCel: s64'Esther_stand_05', 40
+    EndLabel: 48
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'BackWalk'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_bwalk_00', 0
+    SetCel: s64'Esther_bwalk_01', 6
+    SetCel: s64'Esther_bwalk_02', 12
+    SetCel: s64'Esther_bwalk_03', 18
+    SetCel: s64'Esther_bwalk_04', 24
+    SetCel: s64'Esther_bwalk_05', 30
+    SetCel: s64'Esther_bwalk_06', 36
+    SetCel: s64'Esther_bwalk_07', 42
+    EndLabel: 48
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BackDash'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_stand_00', 0
+    EndLabel: 6
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'ForwardWalk'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_fwalk_00', 0
+    SetCel: s64'Esther_fwalk_01', 6
+    SetCel: s64'Esther_fwalk_02', 12
+    SetCel: s64'Esther_fwalk_03', 18
+    SetCel: s64'Esther_fwalk_04', 24
+    SetCel: s64'Esther_fwalk_05', 30
+    SetCel: s64'Esther_fwalk_06', 36
+    SetCel: s64'Esther_fwalk_07', 42
+    EndLabel: 48
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'ForwardDash'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_stand_00', 0
+    EndLabel: 6
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'ForwardDashStop'
+  OnUpdate: 
+    SetCel: s64'Esther_stand_00', 0
+    EndLabel: 15
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Stand2Crouch'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_00', 0
+    SetCel: s64'Esther_crouch_01', 3
+    EndLabel: 6
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Crouch'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_crouch_02', 0
+    SetCel: s64'Esther_crouch_03', 8
+    SetCel: s64'Esther_crouch_04', 16
+    SetCel: s64'Esther_crouch_05', 24
+    SetCel: s64'Esther_crouch_04', 32
+    SetCel: s64'Esther_crouch_03', 40
+    EndLabel: 48
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Crouch2Stand'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    SetCel: s64'Esther_crouch_00', 3
+    EndLabel: 6
+    ExitState: 
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'VJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'FJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'VSuperJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BSuperJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'FSuperJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'BackAirDash'
+  OnUpdate: 
+    SetCel: s64'Esther_jump_04', 0
+    EndLabel: 12
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'ForwardAirDash'
+  OnUpdate: 
+    SetCel: s64'Esther_jump_04', 0
+    EndLabel: 20
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'JumpLanding'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    SetCel: s64'Esther_crouch_00', 3
+    EndLabel: 6
+    ExitState: 
+    EndBlock: 
+  EndState: 
+  
+BeginState: s64'VAirJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BAirJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'FAirJump'
+  OnUpdate: 
+    SetCel: s64'Esther_crouch_01', 0
+    BeginLabel: s64'Loop'
+    SetCel: s64'Esther_jump_00', 4
+    SetCel: s64'Esther_jump_01', 8
+    EndLabel: 12
+    IfOperation: (IsLesser), Mem(SpeedY), Val(-1900)
+      GotoLabel: s64'Fall'
+      EndIf: 
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'Esther_jump_02', 13
+    SetCel: s64'Esther_jump_03', 16
+    SetCel: s64'Esther_jump_04', 19
+    SetCel: s64'Esther_jump_05', 22
+    SetCel: s64'Esther_jump_06', 25
+    EndLabel: 28
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'Esther_jump_07', 28
+    SetCel: s64'Esther_jump_08', 32
+    EndLabel: 36
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 

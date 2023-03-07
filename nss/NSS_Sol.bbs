@@ -1,0 +1,906 @@
+BeginSubroutine: s64'MatchInit'
+  BeginStateDefine: s64'ForwardAirDashGGST'
+    SetEntryState: (Jumping)
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputLenience: 6
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddInputConditionList: 
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputUpRight)
+    MakeInputSequenceBitmask: (InputNeutral)
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputLenience: 6
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    AddInputConditionList: 
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputLenience: 8
+    AddInputCondition: 
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputDash)
+    MakeInputLenience: 8
+    MakeInputMethod: (Once)
+    AddInputCondition: 
+    AddStateCondition: (AirDashOk)
+    AddStateCondition: (AirDashMinimumHeight)
+    SetStateType: (ForwardAirDash)
+    EndStateDefine: 
+  BeginStateDefine: s64'5A'
+    SetParentState: s64'NormalAttack'
+    SetEntryState: (Standing)
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputL)
+    MakeInputMethod: (Once)
+    AddInputCondition: 
+    EndStateDefine: 
+  BeginStateDefine: s64'6A'
+    SetParentState: s64'NormalAttack'
+    SetEntryState: (Standing)
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputRight)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputS)
+    MakeInputMethod: (Once)
+    AddInputCondition: 
+    EndStateDefine: 
+  BeginStateDefine: s64'2A'
+    SetParentState: s64'NormalAttack'
+    SetEntryState: (Crouching)
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputDown)
+    MakeInputMethod: (Strict)
+    AddInputCondition: 
+    MakeInput: 
+    MakeInputSequenceBitmask: (InputL)
+    MakeInputMethod: (Once)
+    AddInputCondition: 
+    EndStateDefine: 
+  BeginStateDefine: s64'Hitstun0'
+    SetParentState: s64'Hitstun'
+    EndStateDefine: 
+  BeginStateDefine: s64'Hitstun1'
+    SetParentState: s64'Hitstun'
+    EndStateDefine: 
+  BeginStateDefine: s64'Hitstun2'
+    SetParentState: s64'Hitstun'
+    EndStateDefine: 
+  BeginStateDefine: s64'Hitstun3'
+    SetParentState: s64'Hitstun'
+    EndStateDefine: 
+  BeginStateDefine: s64'Hitstun4'
+    SetParentState: s64'Hitstun'
+    EndStateDefine: 
+  EndSubroutine: 
+
+BeginState: s64'Stand'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol000_00', 0
+    SetCel: s64'sol000_01', 9
+    SetCel: s64'sol000_02', 18
+    SetCel: s64'sol000_03', 27
+    SetCel: s64'sol000_04', 36
+    SetCel: s64'sol000_05', 45
+    SetCel: s64'sol000_06', 54
+    SetCel: s64'sol000_07', 63
+    SetCel: s64'sol000_08', 72
+    SetCel: s64'sol000_09', 81
+    SetCel: s64'sol000_10', 90
+    SetCel: s64'sol000_11', 99
+    EndLabel: 108
+    ModifyInternalValue: (Add), Mem(StateVal0), Val(1)
+    GotoLabelIfOperation: s64'Loop', (IsLesser), Mem(StateVal0), Val(6)
+    SetCel: s64'sol001_00', 108
+    SetCel: s64'sol001_01', 113
+    SetCel: s64'sol001_02', 119
+    SetCel: s64'sol001_03', 128
+    SetCel: s64'sol001_04', 137
+    SetCel: s64'sol001_05', 140
+    SetCel: s64'sol001_06', 144
+    SetCel: s64'sol001_07', 149
+    SetCel: s64'sol001_08', 155
+    SetCel: s64'sol001_09', 161
+    SetCel: s64'sol001_10', 168
+    SetCel: s64'sol001_11', 175
+    SetCel: s64'sol001_12', 181
+    SetCel: s64'sol001_13', 190
+    SetCel: s64'sol001_14', 196
+    SetCel: s64'sol001_15', 202
+    SetCel: s64'sol001_16', 213
+    SetCel: s64'sol001_17', 219
+    SetCel: s64'sol001_18', 231
+    SetCel: s64'sol001_19', 236
+    EndLabel: 241
+    StoreInternalValue: Mem(StateVal0), Val(0)
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'StandFlip'
+  OnUpdate: 
+    SetCel: s64'sol003_00', 0
+    SetCel: s64'sol003_01', 2
+    SetCel: s64'sol003_02', 4
+    SetCel: s64'sol003_03', 6
+    EndLabel: 8
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BackWalk'
+  OnUpdate: 
+    SetCel: s64'sol031_00', 0
+    SetCel: s64'sol031_01', 3
+    SetCel: s64'sol031_02', 6
+    SetCel: s64'sol031_03', 9
+    EndLabel: 12
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol031_04', 12
+    SetCel: s64'sol031_05', 18
+    SetCel: s64'sol031_06', 24
+    SetCel: s64'sol031_07', 30
+    SetCel: s64'sol031_08', 36
+    SetCel: s64'sol031_09', 42
+    SetCel: s64'sol031_10', 48
+    SetCel: s64'sol031_11', 54
+    SetCel: s64'sol031_12', 60
+    SetCel: s64'sol031_13', 66
+    EndLabel: 72
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BackDash'
+  OnUpdate: 
+    SetCel: s64'sol034_00', 0
+    SetCel: s64'sol034_01', 2
+    SetCel: s64'sol034_02', 6
+    SetCel: s64'sol034_03', 11
+    EndLabel: 71
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'ForwardWalk'
+  OnUpdate: 
+    SetCel: s64'sol030_00', 0
+    SetCel: s64'sol030_01', 3
+    SetCel: s64'sol030_02', 6
+    SetCel: s64'sol030_03', 9
+    EndLabel: 12
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol030_04', 12
+    SetCel: s64'sol030_05', 18
+    SetCel: s64'sol030_06', 24
+    SetCel: s64'sol030_07', 30
+    SetCel: s64'sol030_08', 36
+    SetCel: s64'sol030_09', 42
+    SetCel: s64'sol030_10', 48
+    SetCel: s64'sol030_11', 54
+    SetCel: s64'sol030_12', 60
+    SetCel: s64'sol030_13', 66
+    EndLabel: 72
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'ForwardDash'
+  OnUpdate: 
+    SetCel: s64'sol032_00', 0
+    EndLabel: 2
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol032_01', 2
+    SetCel: s64'sol032_02', 4
+    SetCel: s64'sol032_03', 6
+    SetCel: s64'sol032_04', 8
+    SetCel: s64'sol032_05', 10
+    SetCel: s64'sol032_06', 12
+    SetCel: s64'sol032_07', 14
+    SetCel: s64'sol032_08', 16
+    SetCel: s64'sol032_09', 17
+    SetCel: s64'sol032_10', 18
+    SetCel: s64'sol032_11', 20
+    SetCel: s64'sol032_12', 22
+    SetCel: s64'sol032_13', 24
+    SetCel: s64'sol032_14', 26
+    SetCel: s64'sol032_15', 28
+    EndLabel: 30
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'ForwardDashStop'
+  OnUpdate: 
+    SetCel: s64'sol033_00', 0
+    SetCel: s64'sol033_01', 3
+    SetCel: s64'sol033_02', 6
+    SetCel: s64'sol033_03', 9
+    SetCel: s64'sol033_04', 12
+    SetCel: s64'sol033_05', 15
+    SetCel: s64'sol033_06', 19
+    SetCel: s64'sol033_07', 23
+    SetCel: s64'sol033_08', 27
+    SetCel: s64'sol033_09', 31
+    SetCel: s64'sol033_10', 35
+    EndLabel: 49
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Stand2Crouch'
+  OnUpdate: 
+    SetCel: s64'sol010_00', 0
+    SetCel: s64'sol010_01', 3
+    SetCel: s64'sol010_02', 5
+    SetCel: s64'sol010_03', 7
+    SetCel: s64'sol010_04', 9
+    SetCel: s64'sol010_05', 11
+    SetCel: s64'sol010_06', 14
+    SetCel: s64'sol010_07', 17
+    EndLabel: 20
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Crouch'
+  OnUpdate: 
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol010_08', 0
+    SetCel: s64'sol010_09', 9
+    SetCel: s64'sol010_10', 18
+    SetCel: s64'sol010_11', 27
+    SetCel: s64'sol010_12', 36
+    SetCel: s64'sol010_13', 45
+    SetCel: s64'sol010_14', 54
+    EndLabel: 63
+    ModifyInternalValue: (Add), Mem(StateVal0), Val(1)
+    GotoLabelIfOperation: s64'Loop', (IsLesser), Mem(StateVal0), Val(6)
+    SetCel: s64'sol011_00', 63
+    SetCel: s64'sol011_01', 66
+    SetCel: s64'sol011_02', 72
+    SetCel: s64'sol011_03', 78
+    SetCel: s64'sol011_04', 86
+    SetCel: s64'sol011_05', 91
+    SetCel: s64'sol011_06', 97
+    SetCel: s64'sol011_07', 105
+    SetCel: s64'sol011_08', 111
+    SetCel: s64'sol011_09', 115
+    SetCel: s64'sol011_10', 120
+    SetCel: s64'sol011_11', 125
+    SetCel: s64'sol011_12', 130
+    SetCel: s64'sol011_13', 136
+    SetCel: s64'sol011_14', 141
+    SetCel: s64'sol011_15', 146
+    EndLabel: 151
+    StoreInternalValue: Mem(StateVal0), Val(0)
+    GotoLabel: s64'Loop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'CrouchFlip'
+  OnUpdate: 
+    SetCel: s64'sol013_00', 0
+    SetCel: s64'sol013_01', 2
+    SetCel: s64'sol013_02', 4
+    SetCel: s64'sol013_03', 6
+    EndLabel: 8
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Crouch2Stand'
+  OnUpdate: 
+    SetCel: s64'sol010_15', 0
+    EndLabel: 3
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'VJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(16)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol020_00', 0
+    SetCel: s64'sol020_01', 4
+    SetCel: s64'sol020_02', 7
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol020_03', 10
+    SetCel: s64'sol020_04', 13
+    EndLabel: 16
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol020_05', 16
+    SetCel: s64'sol020_06', 19
+    SetCel: s64'sol020_07', 22
+    SetCel: s64'sol020_08', 25
+    SetCel: s64'sol020_09', 27
+    SetCel: s64'sol020_10', 29
+    SetCel: s64'sol020_11', 31
+    SetCel: s64'sol020_12', 34
+    SetCel: s64'sol020_13', 35
+    SetCel: s64'sol020_14', 38
+    SetCel: s64'sol020_15', 41
+    EndLabel: 44
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol020_16', 44
+    SetCel: s64'sol020_17', 47
+    EndLabel: 50
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(16)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol022_00', 0
+    SetCel: s64'sol022_01', 4
+    SetCel: s64'sol022_02', 7
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol022_03', 10
+    SetCel: s64'sol022_04', 13
+    EndLabel: 16
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol022_05', 16
+    SetCel: s64'sol022_06', 19
+    SetCel: s64'sol022_07', 22
+    SetCel: s64'sol022_08', 25
+    SetCel: s64'sol022_09', 27
+    SetCel: s64'sol022_10', 29
+    SetCel: s64'sol022_11', 31
+    SetCel: s64'sol022_12', 34
+    SetCel: s64'sol022_13', 35
+    SetCel: s64'sol022_14', 38
+    SetCel: s64'sol022_15', 41
+    EndLabel: 44
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol022_16', 44
+    SetCel: s64'sol022_17', 47
+    EndLabel: 50
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'FJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(16)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol021_00', 0
+    SetCel: s64'sol021_01', 4
+    SetCel: s64'sol021_02', 7
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol021_03', 10
+    SetCel: s64'sol021_04', 13
+    EndLabel: 16
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol021_05', 16
+    SetCel: s64'sol021_06', 19
+    SetCel: s64'sol021_07', 22
+    SetCel: s64'sol021_08', 25
+    SetCel: s64'sol021_09', 27
+    SetCel: s64'sol021_10', 29
+    SetCel: s64'sol021_11', 31
+    SetCel: s64'sol021_12', 34
+    SetCel: s64'sol021_13', 35
+    SetCel: s64'sol021_14', 38
+    SetCel: s64'sol021_15', 41
+    EndLabel: 44
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol021_16', 44
+    SetCel: s64'sol021_17', 47
+    EndLabel: 50
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'VSuperJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(16)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol020_00', 0
+    SetCel: s64'sol020_01', 4
+    SetCel: s64'sol020_02', 7
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol020_03', 10
+    SetCel: s64'sol020_04', 13
+    EndLabel: 16
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol020_05', 16
+    SetCel: s64'sol020_06', 19
+    SetCel: s64'sol020_07', 22
+    SetCel: s64'sol020_08', 25
+    SetCel: s64'sol020_09', 27
+    SetCel: s64'sol020_10', 29
+    SetCel: s64'sol020_11', 31
+    SetCel: s64'sol020_12', 34
+    SetCel: s64'sol020_13', 35
+    SetCel: s64'sol020_14', 38
+    SetCel: s64'sol020_15', 41
+    EndLabel: 44
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol020_16', 44
+    SetCel: s64'sol020_17', 47
+    EndLabel: 50
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BSuperJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(16)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol022_00', 0
+    SetCel: s64'sol022_01', 4
+    SetCel: s64'sol022_02', 7
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol022_03', 10
+    SetCel: s64'sol022_04', 13
+    EndLabel: 16
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol022_05', 16
+    SetCel: s64'sol022_06', 19
+    SetCel: s64'sol022_07', 22
+    SetCel: s64'sol022_08', 25
+    SetCel: s64'sol022_09', 27
+    SetCel: s64'sol022_10', 29
+    SetCel: s64'sol022_11', 31
+    SetCel: s64'sol022_12', 34
+    SetCel: s64'sol022_13', 35
+    SetCel: s64'sol022_14', 38
+    SetCel: s64'sol022_15', 41
+    EndLabel: 44
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol022_16', 44
+    SetCel: s64'sol022_17', 47
+    EndLabel: 50
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'FSuperJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(16)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol021_00', 0
+    SetCel: s64'sol021_01', 4
+    SetCel: s64'sol021_02', 7
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol021_03', 10
+    SetCel: s64'sol021_04', 13
+    EndLabel: 16
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol021_05', 16
+    SetCel: s64'sol021_06', 19
+    SetCel: s64'sol021_07', 22
+    SetCel: s64'sol021_08', 25
+    SetCel: s64'sol021_09', 27
+    SetCel: s64'sol021_10', 29
+    SetCel: s64'sol021_11', 31
+    SetCel: s64'sol021_12', 34
+    SetCel: s64'sol021_13', 35
+    SetCel: s64'sol021_14', 38
+    SetCel: s64'sol021_15', 41
+    EndLabel: 44
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol021_16', 44
+    SetCel: s64'sol021_17', 47
+    EndLabel: 50
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BackAirDash'
+  OnEnter: 
+    SetSpeedXPercent: Val(10)
+    EndBlock: 
+  OnUpdate: 
+    IsOnFrame: Val(4)
+    If: Mem(StoredRegister)
+      SetSpeedXPercent: Val(100)
+      EndIf: 
+    SetCel: s64'sol036_00', 0
+    SetCel: s64'sol036_01', 3
+    SetCel: s64'sol036_02', 6
+    SetCel: s64'sol036_03', 9
+    EndLabel: 11
+    ExitState: 
+    EndBlock: 
+  OnExit: 
+    SetSpeedXPercent: Val(75)
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'ForwardAirDashGGST'
+  OnEnter: 
+    AddAirDash: -1
+    AddAirJump: -1
+    EnableFlip: 0
+    SetAirDashNoAttackTimer: 1
+    ClearInertia: 
+    EndBlock: 
+  OnUpdate: 
+    IfOperation: (IsGreaterOrEqual), Mem(SpeedY), Val(1)
+      IfOperation: (IsLesserOrEqual), Mem(ActionTime), Val(5)
+        SetSpeedYPercent: Val(95)
+        EndIf: 
+      Else: 
+        SetSpeedY: Val(0)
+        SetGravity: Val(0)
+        EndElse: 
+      EndIf: 
+    Else: 
+      SetSpeedY: Val(0)
+      SetGravity: Val(0)
+      EndElse: 
+    IsOnFrame: Val(13)
+    If: Mem(StoredRegister)
+      CreateParticle: s64'cmn_airfdash', (Self), 0, 0, 0, 0, 0, 0
+      EndIf: 
+    SetCel: s64'sol021_07', 0
+    SetSpeedX: Val(27500)
+    SetSpeedXPercent: Val(25)
+    SetCel: s64'sol404_15', 3
+    SetCel: s64'sol404_16', 6
+    SetCel: s64'sol035_00', 12
+    SetSpeedXPercent: Val(275)
+    SetCel: s64'sol035_00', 13
+    SetSpeedXPercent: Val(225)
+    SetCel: s64'sol035_01', 15
+    SetSpeedXPercent: Val(125)
+    SetCel: s64'sol035_02', 18
+    SetSpeedXPercent: Val(100)
+    SetSpeedXPercentPerFrame: Val(90)
+    SetCel: s64'sol035_03', 21
+    EndLabel: 24
+    ExitState: 
+    EndBlock: 
+  OnExit: 
+    SetGravity: Val(1900)
+    SetSpeedXPercent: Val(75)
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'JumpFlip'
+  OnUpdate: 
+    SetCel: s64'sol023_00', 0
+    SetCel: s64'sol023_01', 3
+    SetCel: s64'sol023_02', 6
+    SetCel: s64'sol023_03', 9
+    EndLabel: 12
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'JumpLanding'
+  OnUpdate: 
+    SetCel: s64'sol020_18', 0
+    SetCel: s64'sol020_19', 1
+    SetCel: s64'sol020_20', 3
+    EndLabel: 6
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'5A'
+  OnEnter: 
+    CallSubroutine: s64'CmnAtkLevel1'
+    SetDamage: Val(400)
+    SetHitPushbackX: Val(12500)
+    SetAirHitPushbackY: Val(27500)
+    AddChainCancelOption: s64'5A'
+    AddChainCancelOption: s64'2A'
+    AddChainCancelOption: s64'6A'
+    AddChainCancelOption: s64'6C'
+    AddChainCancelOption: s64'6D'
+    AddWhiffCancelOption: s64'5A'
+    AddWhiffCancelOption: s64'2A'
+    AddWhiffCancelOption: s64'6A'
+    AddWhiffCancelOption: s64'6C'
+    AddWhiffCancelOption: s64'6D'
+    SetForcedProration: 80
+    EndBlock: 
+  OnUpdate: 
+    SetCel: s64'sol200_00', 0
+    SetCel: s64'sol200_01', 1
+    SetCel: s64'sol200_02', 3
+    EnableHit: 1
+    SetCel: s64'sol200_03', 5
+    SetCel: s64'sol200_04', 8
+    SetAttacking: 0
+    SetCel: s64'sol200_05', 11
+    SetCel: s64'sol200_06', 14
+    SetCel: s64'sol200_07', 17
+    CallSubroutine: s64'CmnAnyCancelStand'
+    SetCel: s64'sol200_08', 21
+    EndLabel: 24
+    ExitState: 
+    EndBlock: 
+  OnHitOrBlock:
+    EnableWhiffCancel: 1
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'6A'
+  OnEnter: 
+    CallSubroutine: s64'CmnAtkLevel2'
+    SetDamage: Val(600)
+    SetHitPushbackX: Val(20000)
+    SetAirHitPushbackY: Val(25000)
+    SetGroundHitAction: (Blowback)
+    SetAirHitAction: (Blowback)
+    SetInitialProration: 90
+    SetForcedProration: 79
+    EndBlock: 
+  OnUpdate: 
+    SetCel: s64'sol210_00', 0
+    SetCel: s64'sol210_01', 2
+    SetCel: s64'sol210_02', 4
+    SetCel: s64'sol210_03', 7
+    SetCel: s64'sol210_04', 8
+    EnableHit: 1
+    SetCel: s64'sol210_05', 13
+    SetAttacking: 0
+    SetCel: s64'sol210_06', 17
+    SetCel: s64'sol210_07', 21
+    SetCel: s64'sol210_08', 25
+    SetCel: s64'sol210_09', 29
+    EndLabel: 33
+    ExitState: 
+    EndBlock: 
+  OnBlock:
+    SetHitPushbackX: Val(0)
+    SetAirHitPushbackY: Val(15000)
+    SetHitGravity: Val(1250)
+    EndBlock:
+  OnHitOrBlock:
+    EndBlock:
+  EndState: 
+
+BeginState: s64'2A'
+  OnEnter: 
+    CallSubroutine: s64'CmnAtkLevel0'
+    SetDamage: Val(300)
+    SetHitPushbackX: Val(12500)
+    SetAirHitPushbackY: Val(27500)
+    AddChainCancelOption: s64'5A'
+    AddChainCancelOption: s64'2A'
+    AddChainCancelOption: s64'6A'
+    AddChainCancelOption: s64'6C'
+    AddChainCancelOption: s64'6D'
+    AddWhiffCancelOption: s64'5A'
+    AddWhiffCancelOption: s64'2A'
+    AddWhiffCancelOption: s64'6A'
+    AddWhiffCancelOption: s64'6C'
+    AddWhiffCancelOption: s64'6D'
+    SetForcedProration: 80
+    EndBlock: 
+  OnUpdate: 
+    SetCel: s64'sol230_00', 0
+    SetCel: s64'sol230_01', 2
+    SetCel: s64'sol230_02', 4
+    EnableHit: 1
+    SetCel: s64'sol230_03', 6
+    SetCel: s64'sol230_04', 8
+    SetAttacking: 0
+    SetCel: s64'sol230_05', 12
+    EndLabel: 16
+    ExitState: 
+    EndBlock: 
+  OnHitOrBlock:
+    EnableWhiffCancel: 1
+    EndBlock:
+  EndState: 
+  
+BeginState: s64'VAirJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(12)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol020_01', 0
+    SetCel: s64'sol020_02', 3
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol020_03', 6
+    SetCel: s64'sol020_04', 9
+    EndLabel: 12
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol020_05', 12
+    SetCel: s64'sol020_06', 15
+    SetCel: s64'sol020_07', 18
+    SetCel: s64'sol020_08', 21
+    SetCel: s64'sol020_09', 23
+    SetCel: s64'sol020_10', 25
+    SetCel: s64'sol020_11', 27
+    SetCel: s64'sol020_12', 29
+    SetCel: s64'sol020_13', 31
+    SetCel: s64'sol020_14', 34
+    SetCel: s64'sol020_15', 37
+    EndLabel: 41
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol020_16', 41
+    SetCel: s64'sol020_17', 44
+    EndLabel: 47
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'BAirJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(12)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol022_01', 0
+    SetCel: s64'sol022_02', 3
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol022_03', 6
+    SetCel: s64'sol022_04', 9
+    EndLabel: 12
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol022_05', 12
+    SetCel: s64'sol022_06', 15
+    SetCel: s64'sol022_07', 18
+    SetCel: s64'sol022_08', 21
+    SetCel: s64'sol022_09', 23
+    SetCel: s64'sol022_10', 25
+    SetCel: s64'sol022_11', 27
+    SetCel: s64'sol022_12', 29
+    SetCel: s64'sol022_13', 31
+    SetCel: s64'sol022_14', 34
+    SetCel: s64'sol022_15', 37
+    EndLabel: 41
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol022_16', 41
+    SetCel: s64'sol022_17', 44
+    EndLabel: 47
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'FAirJump'
+  OnUpdate: 
+    IfOperation: (IsLesser), Mem(AnimTime), Val(12)
+      IfOperation: (IsLesser), Mem(SpeedY), Val(0)
+        GotoLabel: s64'Fall'
+        EndIf: 
+      EndIf: 
+    SetCel: s64'sol021_01', 0
+    SetCel: s64'sol021_02', 3
+    BeginLabel: s64'Loop'
+    SetCel: s64'sol021_03', 6
+    SetCel: s64'sol021_04', 9
+    EndLabel: 12
+    GotoLabel: s64'Loop'
+    BeginLabel: s64'Fall'
+    SetCel: s64'sol021_05', 12
+    SetCel: s64'sol021_06', 15
+    SetCel: s64'sol021_07', 18
+    SetCel: s64'sol021_08', 21
+    SetCel: s64'sol021_09', 23
+    SetCel: s64'sol021_10', 25
+    SetCel: s64'sol021_11', 27
+    SetCel: s64'sol021_12', 29
+    SetCel: s64'sol021_13', 31
+    SetCel: s64'sol021_14', 34
+    SetCel: s64'sol021_15', 37
+    EndLabel: 41
+    BeginLabel: s64'FallLoop'
+    SetCel: s64'sol021_16', 41
+    SetCel: s64'sol021_17', 44
+    EndLabel: 47
+    GotoLabel: s64'FallLoop'
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'JumpFlip'
+  OnUpdate: 
+    SetCel: s64'sol023_00', 0
+    SetCel: s64'sol023_01', 3
+    SetCel: s64'sol023_02', 6
+    SetCel: s64'sol023_03', 9
+    EndLabel: 12
+    ExitState: 
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Hitstun0'
+  OnUpdate: 
+    SetCel: s64'sol050_00', 0
+    SetCel: s64'sol050_02', 1
+    SetCel: s64'sol050_03', 5
+    SetCel: s64'sol050_11', 8
+    SetCel: s64'sol050_12', 10
+    EndLabel: 12
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Hitstun1'
+  OnUpdate: 
+    SetCel: s64'sol050_00', 0
+    SetCel: s64'sol050_04', 1
+    SetCel: s64'sol050_09', 4
+    SetCel: s64'sol050_10', 8
+    SetCel: s64'sol050_11', 10
+    SetCel: s64'sol050_12', 12
+    EndLabel: 14
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Hitstun2'
+  OnUpdate: 
+    SetCel: s64'sol050_00', 0
+    SetCel: s64'sol050_04', 1
+    SetCel: s64'sol050_06', 3
+    SetCel: s64'sol050_09', 7
+    SetCel: s64'sol050_10', 10
+    SetCel: s64'sol050_11', 12
+    SetCel: s64'sol050_12', 12
+    EndLabel: 16
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Hitstun3'
+  OnUpdate: 
+    SetCel: s64'sol050_00', 0
+    SetCel: s64'sol050_04', 1
+    SetCel: s64'sol050_06', 3
+    SetCel: s64'sol050_07', 5
+    SetCel: s64'sol050_08', 9
+    SetCel: s64'sol050_09', 11
+    SetCel: s64'sol050_10', 13
+    SetCel: s64'sol050_11', 15
+    SetCel: s64'sol050_12', 17
+    EndLabel: 19
+    EndBlock: 
+  EndState: 
+
+BeginState: s64'Hitstun4'
+  OnUpdate: 
+    SetCel: s64'sol050_00', 0
+    SetCel: s64'sol050_06', 1
+    SetCel: s64'sol050_07', 4
+    SetCel: s64'sol050_08', 10
+    SetCel: s64'sol050_09', 13
+    SetCel: s64'sol050_10', 15
+    SetCel: s64'sol050_11', 17
+    SetCel: s64'sol050_12', 19
+    EndLabel: 21
+    EndBlock: 
+  EndState: 
+
