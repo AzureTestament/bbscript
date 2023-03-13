@@ -64,15 +64,15 @@ pub enum TaggedValue {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum InstructionInfo {
     #[serde(serialize_with = "ordered_map")]
-    Sized(HashMap<u32, SizedInstruction>),
+    Sized(HashMap<u16, SizedInstruction>),
     #[serde(serialize_with = "ordered_map")]
-    Unsized(HashMap<u32, UnsizedInstruction>),
+    Unsized(HashMap<u16, UnsizedInstruction>),
 }
 
 #[derive(Debug, Clone)]
 pub enum GenericInstruction {
-    Sized(u32, SizedInstruction),
-    Unsized(u32, UnsizedInstruction),
+    Sized(u16, SizedInstruction),
+    Unsized(u16, UnsizedInstruction),
 }
 
 impl GenericInstruction {
@@ -91,7 +91,7 @@ impl GenericInstruction {
     }
 
     #[inline]
-    pub fn id(&self) -> u32 {
+    pub fn id(&self) -> u16 {
         match self {
             Self::Sized(id, _) => *id,
             Self::Unsized(id, _) => *id,
@@ -116,7 +116,7 @@ impl GenericInstruction {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ScriptConfig {
-    pub jump_table_ids: Vec<u32>,
+    pub jump_table_ids: Vec<u16>,
     /// The value used for identifying [`TaggedValue::Literal`]s in the scripts
     pub literal_tag: BBSNumber,
     /// The value used for identifying [`TaggedValue::Variable`]s in the scripts
@@ -125,7 +125,7 @@ pub struct ScriptConfig {
     pub named_variables: BiMap<BBSNumber, String>,
     /// A map of [`BBSArgType::Enum`] maps for naming specific values
     #[serde(serialize_with = "ordered_enums")]
-    pub named_value_maps: HashMap<String, BiMap<BBSNumber, String>>,
+    pub named_value_maps: HashMap<String, BiMap<u32, String>>,
     pub(crate) instructions: InstructionInfo,
 }
 
@@ -135,8 +135,6 @@ impl ScriptConfig {
         use std::collections::HashSet;
         let config: Self =
             de::from_reader(db_config).map_err(|e| BBScriptError::ConfigInvalid(e.to_string()))?;
-
-        // initial sanity checks for the config
 
         // ensure config contains no duplicate names
         // otherwise it will return an error with the name
@@ -171,17 +169,6 @@ impl ScriptConfig {
             }
         }
 
-        if let InstructionInfo::Sized(ref map) = config.instructions {
-            map.iter().for_each(|(id, instruction)| {
-                let arg_list_size = instruction.args.iter().fold(0, |size, arg| size + arg.size());
-
-                if instruction.size < arg_list_size {
-                    let min_size = arg_list_size + 4;
-                    log::warn!("Instruction ID {id} size too small for known args! Size should be at least {min_size} to support arguments");
-                }
-            })
-        }
-
         Ok(config)
     }
 
@@ -211,7 +198,7 @@ impl ScriptConfig {
     }
 
     #[inline]
-    pub fn get_by_id(&self, id: u32) -> Option<GenericInstruction> {
+    pub fn get_by_id(&self, id: u16) -> Option<GenericInstruction> {
         match self.instructions {
             InstructionInfo::Sized(ref map) => map
                 .get(&id)
@@ -222,7 +209,7 @@ impl ScriptConfig {
         }
     }
 
-    pub fn get_enum_value(&self, enum_name: String, variant: String) -> Option<BBSNumber> {
+    pub fn get_enum_value(&self, enum_name: String, variant: String) -> Option<u32> {
         self.named_value_maps
             .get(&enum_name)
             .map(|e| e.get_by_right(&variant).map(|v| *v))
@@ -248,6 +235,8 @@ impl ScriptConfig {
 pub struct SizedInstruction {
     pub size: usize,
     #[serde(default)]
+    pub unk: u16,
+    #[serde(default)]
     #[serde(skip_serializing_if = "String::is_empty")]
     pub name: String,
     pub code_block: CodeBlock,
@@ -259,17 +248,14 @@ pub struct SizedInstruction {
 
 impl SizedInstruction {
     pub fn args(&self) -> SmallVec<[ArgType; 16]> {
-        const INSTRUCTION_SIZE: usize = 0x4;
+        const INSTRUCTION_SIZE: usize = 0x2;
         let known_args_size: usize = self.args.iter().map(|a| a.size()).sum();
 
         let mut args = self.args.clone();
 
         if known_args_size != (self.size - INSTRUCTION_SIZE) {
-            // size has an extra 4 bytes because of the ID being a u32
-            // we use saturating_sub to allow known args to be larger than labeled size.
-            // but still warn for it in some earlier initial sanity checks
-            let left_over =
-                (self.size.saturating_sub(INSTRUCTION_SIZE)).saturating_sub(known_args_size);
+            // size typically has an extra 4 bytes because of the ID being a u32
+            let left_over = (self.size.saturating_sub(INSTRUCTION_SIZE)) - known_args_size;
             args.push(ArgType::Unknown(left_over))
         }
 
@@ -455,7 +441,7 @@ impl Into<ScriptConfig> for GameDB {
 
 /// Serialize hashmap as BTreeMap for ordered keys
 fn ordered_enums<S>(
-    value: &HashMap<String, BiMap<BBSNumber, String>>,
+    value: &HashMap<String, BiMap<u32, String>>,
     serializer: S,
 ) -> Result<S::Ok, S::Error>
 where

@@ -19,12 +19,13 @@ pub enum ArgValue {
     String16(String),
     String32(String),
     AccessedValue(TaggedValue),
-    Enum(String, BBSNumber),
+    Enum(String, u32),
 }
 
 #[derive(Debug, Clone)]
 pub struct InstructionValue {
-    pub id: u32,
+    pub id: u16,
+    pub unk: u16,
     pub name: Option<String>,
     pub args: SmallVec<[ArgValue; 16]>,
     pub code_block: CodeBlock,
@@ -51,7 +52,7 @@ fn arg_to_string(config: &ScriptConfig, arg: &ArgValue) -> Result<String, BBScri
         ArgValue::Enum(name, val) => match config.named_value_maps.get(name) {
             Some(map) => map
                 .get_by_left(val)
-                .map_or(Ok(format!("{val}")), |name| Ok(format!("({name})"))),
+                .map_or(Ok(format!("{}", *val as i32)), |name| Ok(format!("({name})"))),
             None => return Err(BBScriptError::BadEnumReference(name.clone())),
         },
     }
@@ -79,6 +80,7 @@ impl ScriptConfig {
             };
 
             out.write_fmt(format_args!("{}: ", instruction_name))?;
+            out.write_fmt(format_args!("{}, ", instruction.unk))?;
 
             let mut args = instruction.args.iter().peekable();
             while let Some(arg) = args.next() {
@@ -114,7 +116,7 @@ impl ScriptConfig {
     }
 
     pub fn parse<T: Into<Bytes>>(&self, input: T) -> Result<Vec<InstructionValue>, BBScriptError> {
-        const JUMP_ENTRY_LENGTH: usize = 0x24;
+        const JUMP_ENTRY_LENGTH: usize = 0x8;
 
         let mut input: Bytes = input.into();
 
@@ -166,10 +168,11 @@ impl ScriptConfig {
 
     fn parse_sized(
         &self,
-        id_map: &HashMap<u32, SizedInstruction>,
+        id_map: &HashMap<u16, SizedInstruction>,
         input: &mut Bytes,
     ) -> Result<InstructionValue, BBScriptError> {
-        let instruction_id = input.get_u32_le();
+        let instruction_id = input.get_u16_le();
+        let unk = input.get_u16_le();
 
         let instruction = if let Some(instruction) = id_map.get(&instruction_id) {
             instruction
@@ -191,6 +194,7 @@ impl ScriptConfig {
 
         let instruction = InstructionValue {
             id: instruction_id,
+            unk: unk,
             name: instruction_name,
             args,
             code_block: instruction.code_block,
@@ -202,12 +206,12 @@ impl ScriptConfig {
 
     fn parse_unsized(
         &self,
-        id_map: &HashMap<u32, UnsizedInstruction>,
+        id_map: &HashMap<u16, UnsizedInstruction>,
         input: &mut Bytes,
     ) -> Result<InstructionValue, BBScriptError> {
         log::debug!("offset {:#X} from end of file", input.remaining());
 
-        let instruction_id = input.get_u32_le();
+        let instruction_id = input.get_u16_le();
         let instruction_size = input.get_u32_le();
 
         log::info!(
@@ -235,6 +239,7 @@ impl ScriptConfig {
 
         let instruction = InstructionValue {
             id: instruction_id,
+            unk: 0,
             name: instruction_name,
             args,
             code_block: instruction.code_block,
@@ -261,7 +266,7 @@ impl ScriptConfig {
                 ArgValue::String32(process_string_buf(&buf))
             }
             ArgType::Number => ArgValue::Number(input.get_i32_le()),
-            ArgType::Enum(s) => ArgValue::Enum(s.clone(), input.get_i32_le()),
+            ArgType::Enum(s) => ArgValue::Enum(s.clone(), input.get_u32_le()),
             ArgType::AccessedValue => {
                 let tag = input.get_i32_le();
 

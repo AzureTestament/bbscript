@@ -1,0 +1,4336 @@
+(
+    jump_table_ids: [
+        0,
+        8,
+    ],
+    literal_tag: 0,
+    variable_tag: 2,
+    named_variables: {
+        0: "TmpReg",
+        30: "PlayerDamage",
+        31: "ExGage0",
+        32: "ExGage1",
+        33: "ExGage2",
+        34: "ExGage3",
+        35: "ExGage4",
+        36: "IsAir",
+        37: "IsLand",
+        38: "Dir",
+    },
+    named_value_maps: {
+        "HIT_ACTION": {
+            0: "NORMAL_UPPER",
+            1: "AIR_NORMAL",
+            2: "CRUMPLE",
+            3: "FORCE_CROUCH",
+            4: "FORCE_STAND",
+            5: "NORMAL_LOWER",
+            6: "GUARD_BREAK_STAND",
+            7: "GUARD_BREAK_CROUCH",
+            8: "AIR_FACE_UP",
+            9: "AIR_LAUNCH",
+            10: "AIR_FACE_DOWN",
+            11: "AIR_STRONG",
+            12: "KIRIMOMI",
+            13: "KIRIMOMI_B",
+            14: "GUARD_BREAK_AIR",
+            15: "STAGGER",
+            16: "EX_DAMAGE_BALL_MOF",
+            17: "EX_DAMAGE",
+            18: "NONE",
+            19: "GUARD_BREAK",
+            20: "GUARD_BREAK_SAFE",
+            21: "FORCE_STAND_AUTO",
+            22: "GUARD_BREAK_GRAB_STAND_OR_CROUCH",
+            23: "GUARD_BREAK_GRAB_STAND",
+            24: "GUARD_BREAK_GRAB_CROUCH",
+            25: "GUARD_BREAK_GRAB_AIR",
+            26: "AIR_SOMERSAULT",
+            27: "KIRIMOMI_LAND",
+            28: "KIRIMOMI_VERTICAL",
+            29: "KIRIMOMI_SIDE",
+            30: "Z_SPIN",
+            31: "RUSH_FINISH",
+            32: "FUTTOBI_FINISH",
+            33: "EXPLOSION_FINISH",
+            34: "WALL_STICK",
+            35: "FORCE_STAND_BOTTOM",
+            36: "FLOAT_DAMAGE",
+        },
+        "ATTACK_TYPE": {
+            1: "NORMAL",
+            2: "SPECIAL",
+            3: "SUPER",
+            5: "INSTANT_KILL",
+        },
+        "CO_TYPE": {
+            0: "NULL",
+            1: "PREVIOUS",
+            2: "PARENT",
+            3: "PLAYER",
+            4: "STACK0",
+            5: "STACK1",
+            6: "STACK2",
+            7: "STACK3",
+            8: "STACK4",
+            9: "STACK5",
+            10: "STACK6",
+            11: "STACK7",
+            12: "STACK_FOR_CMN_ACT",
+            21: "LOCKED",
+            22: "ENEMY",
+            23: "SELF",
+            24: "ATTACKER",
+            25: "DEFENDER",
+        },
+        "OP_1": {
+            0: "NOT_ZERO",
+            1: "ZERO",
+            2: "LESS_THAN_RANDOM_NUMBER",
+            3: "ABSOLUTE_VALUE",
+        },
+        "OP_2": {
+            0: "ADD",
+            1: "SUB",
+            2: "MUL",
+            3: "DIV",
+            4: "MOD",
+            5: "AND",
+            6: "OR",
+            7: "BIT_AND",
+            8: "BIT_OR",
+            9: "IS_EQUAL",
+            10: "IS_GREATER",
+            11: "IS_LESSER",
+            12: "IS_GREATER_OR_EQUAL",
+            13: "IS_LESSER_OR_EQUAL",
+            14: "BIT_DELETE",
+            15: "IS_NOT_EQUAL",
+        },
+        "UPON": {
+            0: "IMMEDIATE",
+            1: "BEFORE_EXIT",
+            2: "LANDING",
+            3: "IDLING",
+            4: "FALLING",
+            5: "LANDING_INFINITY",
+            7: "IN_CORNER",
+            8: "ACTION_END",
+            10: "HIT_OR_GUARD_ANY_ENTITY",
+            11: "HIT_OR_GUARD",
+            12: "HIT",
+        },
+        "INPUT_TYPE": {
+            2: "INPUT_TYPE_SPECIAL_MOVE",
+            256: "INPUT_TYPE_1Y",
+            257: "INPUT_TYPE_2Y",
+            258: "INPUT_TYPE_3Y",
+            259: "INPUT_TYPE_4Y",
+            260: "INPUT_TYPE_5Y",
+            261: "INPUT_TYPE_6Y",
+            262: "INPUT_TYPE_7Y",
+            263: "INPUT_TYPE_8Y",
+            264: "INPUT_TYPE_9Y",
+            265: "INPUT_TYPE_AIR1Y",
+            266: "INPUT_TYPE_AIR2Y",
+            267: "INPUT_TYPE_AIR3Y",
+            268: "INPUT_TYPE_AIR4Y",
+            269: "INPUT_TYPE_AIR5Y",
+            270: "INPUT_TYPE_AIR6Y",
+            271: "INPUT_TYPE_AIR7Y",
+            272: "INPUT_TYPE_AIR8Y",
+            273: "INPUT_TYPE_AIR9Y",
+            512: "INPUT_TYPE_1X",
+            513: "INPUT_TYPE_2X",
+            514: "INPUT_TYPE_3X",
+            515: "INPUT_TYPE_4X",
+            516: "INPUT_TYPE_5X",
+            517: "INPUT_TYPE_6X",
+            518: "INPUT_TYPE_7X",
+            519: "INPUT_TYPE_8X",
+            520: "INPUT_TYPE_9X",
+            521: "INPUT_TYPE_AIR1X",
+            522: "INPUT_TYPE_AIR2X",
+            523: "INPUT_TYPE_AIR3X",
+            524: "INPUT_TYPE_AIR4X",
+            525: "INPUT_TYPE_AIR5X",
+            526: "INPUT_TYPE_AIR6X",
+            527: "INPUT_TYPE_AIR7X",
+            528: "INPUT_TYPE_AIR8X",
+            529: "INPUT_TYPE_AIR9X",
+            768: "INPUT_TYPE_1A",
+            769: "INPUT_TYPE_2A",
+            770: "INPUT_TYPE_3A",
+            771: "INPUT_TYPE_4A",
+            772: "INPUT_TYPE_5A",
+            773: "INPUT_TYPE_6A",
+            774: "INPUT_TYPE_7A",
+            775: "INPUT_TYPE_8A",
+            776: "INPUT_TYPE_9A",
+            777: "INPUT_TYPE_AIR1A",
+            778: "INPUT_TYPE_AIR2A",
+            779: "INPUT_TYPE_AIR3A",
+            780: "INPUT_TYPE_AIR4A",
+            781: "INPUT_TYPE_AIR5A",
+            782: "INPUT_TYPE_AIR6A",
+            783: "INPUT_TYPE_AIR7A",
+            784: "INPUT_TYPE_AIR8A",
+            785: "INPUT_TYPE_AIR9A",
+            1024: "INPUT_TYPE_1B",
+            1025: "INPUT_TYPE_2B",
+            1026: "INPUT_TYPE_3B",
+            1027: "INPUT_TYPE_4B",
+            1028: "INPUT_TYPE_5B",
+            1029: "INPUT_TYPE_6B",
+            1030: "INPUT_TYPE_7B",
+            1031: "INPUT_TYPE_8B",
+            1032: "INPUT_TYPE_9B",
+            1033: "INPUT_TYPE_AIR1B",
+            1034: "INPUT_TYPE_AIR2B",
+            1035: "INPUT_TYPE_AIR3B",
+            1036: "INPUT_TYPE_AIR4B",
+            1037: "INPUT_TYPE_AIR5B",
+            1038: "INPUT_TYPE_AIR6B",
+            1039: "INPUT_TYPE_AIR7B",
+            1040: "INPUT_TYPE_AIR8B",
+            1041: "INPUT_TYPE_AIR9B",
+            1542: "INPUT_TYPE_SUPER_MOVE",
+            1543: "INPUT_TYPE_INSTANT_KILL",
+            1793: "INPUT_TYPE_5LY",
+            1794: "INPUT_TYPE_5LX",
+            1795: "INPUT_TYPE_5LA",
+            1796: "INPUT_TYPE_5LB",
+            1796: "INPUT_TYPE_5LB",
+            1798: "INPUT_TYPE_6R"
+        },
+        "INPUT": {
+            0: "INPUT_NONE",
+            1: "INPUT_HOLD_Y",
+            2: "INPUT_PRECISE_Y",
+            3: "INPUT_RELEASE_Y",
+            4: "INPUT_PRESS_Y",
+            5: "INPUT_NOT_Y",
+            10: "INPUT_HOLD_X",
+            11: "INPUT_PRECISE_X",
+            12: "INPUT_RELEASE_X",
+            13: "INPUT_PRESS_X",
+            14: "INPUT_NOT_X",
+            19: "INPUT_HOLD_A",
+            20: "INPUT_PRECISE_A",
+            21: "INPUT_RELEASE_A",
+            22: "INPUT_PRESS_A",
+            23: "INPUT_NOT_A",
+            28: "INPUT_HOLD_B",
+            29: "INPUT_PRECISE_B",
+            30: "INPUT_RELEASE_B",
+            31: "INPUT_PRESS_B",
+            32: "INPUT_NOT_B",
+            46: "INPUT_HOLD_L",
+            47: "INPUT_PRECISE_L",
+            48: "INPUT_RELEASE_L",
+            49: "INPUT_PRESS_L",
+            50: "INPUT_NOT_L",
+            55: "INPUT_HOLD_R",
+            56: "INPUT_PRECISE_R",
+            57: "INPUT_RELEASE_R",
+            58: "INPUT_PRESS_R",
+            59: "INPUT_NOT_R",
+            64: "INPUT_1",
+            72: "INPUT_NOT_1",
+            77: "INPUT_2",
+            78: "INPUT_ANY_DOWN",
+            85: "INPUT_NOT_2",
+            86: "INPUT_DISALLOW_UP",
+            90: "INPUT_3",
+            98: "INPUT_NOT_3",
+            103: "INPUT_4",
+            104: "INPUT_ANY_BACK",
+            111: "INPUT_NOT_4",
+            112: "INPUT_DISALLOW_DOWN",
+            116: "INPUT_5",
+            124: "INPUT_NOT_5",
+            129: "INPUT_6",
+            130: "INPUT_ANY_FORWARD",
+            137: "INPUT_NOT_6",
+            142: "INPUT_7",
+            150: "INPUT_NOT_7",
+            155: "INPUT_8",
+            156: "INPUT_ANY_UP",
+            163: "INPUT_NOT_8",
+            168: "INPUT_9",
+            176: "INPUT_NOT_9",
+            181: "INPUT_236",
+            182: "INPUT_623",
+            183: "INPUT_214",
+            184: "INPUT_41236",
+            185: "INPUT_421",
+            186: "INPUT_63214",
+            187: "INPUT_236236",
+            188: "INPUT_214214",
+            189: "INPUT_4123641236",
+            190: "INPUT_6321463214",
+            191: "INPUT_632146",
+            192: "INPUT_641236",
+            193: "INPUT_214236",
+            194: "INPUT_236214",
+            195: "INPUT_ANY_DOWNDOWN",
+            196: "INPUT_BACK_FORWARD",
+            197: "INPUT_CHARGE_BACK_FORWARD_30F",
+            198: "INPUT_CHARGE_DOWN_UP_30F",
+            199: "INPUT_6428",
+            200: "INPUT_CHARGE_UP_DOWN_30F",
+            201: "INPUT_GAMMA_RAY",
+            202: "INPUT_GAMMA_RAY_DIZZY",
+            203: "INPUT_DOWN_UP",
+            204: "INPUT_646",
+            205: "INPUT_P_AUTOCOMBO",
+            206: "INPUT_K_AUTOCOMBO",
+            207: "INPUT_S_AUTOCOMBO",
+            208: "INPUT_H_AUTOCOMBO",
+            209: "INPUT_D_AUTOCOMBO",
+            210: "INPUT_ROLL",
+            211: "INPUT_ROLL_X2",
+            212: "INPUT_DOWN_UP_EX",
+            213: "INPUT_DOWN_X3",
+            214: "INPUT_DOWN_X4",
+            215: "INPUT_2626",
+            216: "INPUT_ROLL_X4",
+            219: "INPUT_THROW",
+            220: "INPUT_AIR_THROW",
+            221: "INPUT_EXCITE",
+            222: "INPUT_DEAD_ANGLE",
+            223: "INPUT_ROMAN_CANCEL",
+            224: "INPUT_SUPER_JUMP",
+            225: "INPUT_JUMP",
+            226: "INPUT_66",
+            227: "INPUT_44",
+            228: "INPUT_EASY_GUARD_BACK",
+            229: "INPUT_EXACT_GUARD_BACK",
+            230: "INPUT_11",
+            231: "INPUT_22",
+            232: "INPUT_33",
+            233: "INPUT_44_QUICK",
+            234: "INPUT_66_QUICK",
+            235: "INPUT_77",
+            236: "INPUT_88",
+            238: "INPUT_99",
+            239: "INPUT_SPECIAL_1",
+            240: "INPUT_SPECIAL_2",
+            241: "INPUT_SPECIAL_3",
+            242: "INPUT_SPECIAL_4",
+            243: "INPUT_TECH",
+            244: "INPUT_623_LONG",
+            247: "INPUT_DOWN_DOWN_LONG",
+            248: "INPUT_45789",
+            249: "INPUT_5789",
+            250: "INPUT_56789",
+            251: "INPUT_4578",
+            252: "INPUT_41236_LONG",
+            253: "INPUT_THROW_TECH",
+            254: "INPUT_ROLL_X3",
+            255: "INPUT_1632143",
+            256: "INPUT_546",
+            257: "INPUT_6_OR_3",
+            258: "INPUT_5_TAP_4_TAP_6",
+            259: "INPUT_5_TAP_6_TAP_4",
+            260: "INPUT_CHARGE_BACK_FORWARD_40F",
+            261: "INPUT_CHARGE_DOWN_UP_40F",
+            262: "INPUT_CHARGE_BACK_FORWARD_45F",
+            263: "INPUT_CHARGE_DOWN_UP_45F",
+            264: "INPUT_236236236",
+            265: "INPUT_623_FAST",
+            266: "INPUT_5_TAP_4_TAP_6_FAST",
+            267: "INPUT_DOWN_X1",
+            268: "INPUT_BLOCKING",
+            269: "INPUT_DOWN_CHOI_HOLD",
+            270: "INPUT_BLOCKING_XRD",
+            271: "INPUT_5_TAP_4_TAP_6_LONG",
+        },
+        "STATE_NAME": {
+            3196052715: "PreInit",
+            617471793: "MatchInit",
+            2989257067: "MatchInit2",
+            2592851524: "RoundInit",
+            1233452593: "QuickInit",
+            2000901952: "OnActionBegin",
+            2310241271: "OnActionBeginPre",
+            440229124: "OnIdling",
+            3700990199: "OnFinalize",
+            1079416409: "OnAttackCollision",
+            3526942610: "OnLanding",
+            2890336868: "OnDamage",
+            3619909175: "OnNoStopIdling",
+            1969761820: "OnFrameStep",
+            3696271418: "OnPreDraw",
+            3950638952: "OnGuard",
+            1829497558: "OnArmor",
+            215409913: "OnPreSkillCheck",
+            3535762481: "PlayerInit",
+            3064301040: "CmnActStand",
+            2473072793: "CmnActStandTurn",
+            2143037166: "CmnActStand2Crouch",
+            3435516306: "CmnActCrouch",
+            2245452014: "CmnActCrouchTurn",
+            978993905: "CmnActJumpPre",
+            2622965166: "CmnActJumpUpper",
+            1816264597: "CmnActJumpUpperEnd",
+            947268842: "CmnActJumpDown",
+            2800014847: "CmnActJumpLanding",
+            329806481: "CmnActLandingStiffLoop",
+            159026446: "CmnActLandingStiffEnd",
+            2705119139: "CmnActFWalk",
+            714746306: "CmnActFWalkEnd",
+            1296017695: "CmnActBWalk",
+            2324827614: "CmnActBWalkEnd",
+            2656264388: "CmnActFDash",
+            3219082410: "CmnActFDashStop",
+            1247162944: "CmnActBDash",
+            1797879749: "CmnActBDashLanding",
+            3179072424: "CmnActAirFDash",
+            1769970980: "CmnActAirBDash",
+            4158218128: "CmnActHitStandLv1",
+            4158218129: "CmnActHitStandLv2",
+            4158218130: "CmnActHitStandLv3",
+            4158218131: "CmnActHitStandLv4",
+            4158218132: "CmnActHitStandLv5",
+            599616354: "CmnActHitStandLowLv1",
+            599616355: "CmnActHitStandLowLv2",
+            599616356: "CmnActHitStandLowLv3",
+            599616357: "CmnActHitStandLowLv4",
+            599616358: "CmnActHitStandLowLv5",
+            2354962250: "CmnActHitCrouchLv1",
+            2354962251: "CmnActHitCrouchLv2",
+            2354962252: "CmnActHitCrouchLv3",
+            2354962253: "CmnActHitCrouchLv4",
+            2354962254: "CmnActHitCrouchLv5",
+            1184214508: "CmnActBDownUpper",
+            500483363: "CmnActBDownUpperEnd",
+            3162625976: "CmnActBDownDown",
+            3438055681: "CmnActBDownCrash",
+            3078440952: "CmnActBDownBound",
+            3183195706: "CmnActBDownLoop",
+            469547988: "CmnActBDown2Stand",
+            958039312: "CmnActFDownUpper",
+            1458307239: "CmnActFDownUpperEnd",
+            1624818876: "CmnActFDownDown",
+            3211880485: "CmnActFDownCrash",
+            2852265756: "CmnActFDownBound",
+            1645388606: "CmnActFDownLoop",
+            3843284504: "CmnActFDown2Stand",
+            53338528: "CmnActVDownUpper",
+            994635447: "CmnActVDownUpperEnd",
+            4063525068: "CmnActVDownDown",
+            2307179701: "CmnActVDownCrash",
+            3105513741: "CmnActBlowoff",
+            2928808203: "CmnActKirimomiUpper",
+            2165790927: "CmnActFreeze",
+            1599806206: "CmnActWallBound",
+            1858237854: "CmnActWallBoundDown",
+            3501422133: "CmnActStaggerLoop",
+            3480852403: "CmnActStaggerDown",
+            1813577702: "CmnActUkemiStagger",
+            1817232011: "CmnActUkemiAirF",
+            1817232007: "CmnActUkemiAirB",
+            1817232019: "CmnActUkemiAirN",
+            3707069590: "CmnActUkemiLandF",
+            3707069586: "CmnActUkemiLandB",
+            3707069598: "CmnActUkemiLandN",
+            3622545715: "CmnActUkemiLandNLanding",
+            119040882: "CmnActMidGuardPre",
+            3413358709: "CmnActMidGuardLoop",
+            118833874: "CmnActMidGuardEnd",
+            2923583954: "CmnActMidHeavyGuardLoop",
+            773611527: "CmnActMidHeavyGuardEnd",
+            2515417976: "CmnActHighGuardPre",
+            1004538795: "CmnActHighGuardLoop",
+            2515210968: "CmnActHighGuardEnd",
+            964309880: "CmnActHighHeavyGuardLoop",
+            3110569725: "CmnActHighHeavyGuardEnd",
+            1485199100: "CmnActCrouchGuardPre",
+            1598473551: "CmnActCrouchGuardLoop",
+            1484992092: "CmnActCrouchGuardEnd",
+            797471420: "CmnActCrouchHeavyGuardLoop",
+            3485553441: "CmnActCrouchHeavyGuardEnd",
+            1795375668: "CmnActAirGuardPre",
+            1142990407: "CmnActAirGuardLoop",
+            1795168660: "CmnActAirGuardEnd",
+            2882187892: "CmnActAirHeavyGuardLoop",
+            146306841: "CmnActAirHeavyGuardEnd",
+            1300035168: "CmnActGuardBreakStand",
+            2249260418: "CmnActGuardBreakCrouch",
+            1575474234: "CmnActGuardBreakAir",
+            3414589363: "CmnActAirTurn",
+            471428140: "CmnActLockWait",
+            1223081132: "CmnActLockReject",
+            4014540144: "CmnActAirLockWait",
+            2913640240: "CmnActAirLockReject",
+            4036110511: "CmnActLandSpin",
+            1521741039: "CmnActLandSpinDown",
+            4036110511: "CmnActLandSpin",
+            2289592545: "CmnActVertSpin",
+            989724787: "CmnActSlideAir",
+            2473946428: "CmnActSlideKeep",
+            989800534: "CmnActSlideEnd",
+            2962700150: "CmnActAomukeSlideKeep",
+            3846229568: "CmnActAomukeSlideEnd",
+            4051521275: "CmnActBurstBegin",
+            3315888600: "CmnActBurstLoop",
+            1842379357: "CmnActBurstEnd",
+            1447113087: "CmnActAirBurstBegin",
+            3390928700: "CmnActAirBurstLoop",
+            1090524065: "CmnActAirBurstEnd",
+            2412342344: "CmnActEntry",
+            2421502236: "CmnActRoundWin",
+            2512286401: "CmnActMatchWin",
+            171337003: "CmnActBlowOffV",
+            2285521643: "CmnActBlowOffVDown",
+            2555414250: "CmnActToFlying",
+            2827956230: "CmnActToLanding",
+            2106206406: "CmnActHyperDash",
+            2181246506: "CmnActAirHyperDash",
+            3371459869: "CmnActToChase",
+            4171675288: "CmnActCharge",
+            3587109076: "CmnActAirStand",
+            3227927175: "CmnActAirFWalk",
+            1818825731: "CmnActAirBWalk",
+            2062336505: "CmnActDodge",
+            2087808470: "CmnActZCancel",
+            1899572632: "CmnActUCDefence",
+            291322267: "CmnActUCAtkWait",
+            2591316182: "CmnActUCCounter",
+            2049082129: "CmnActUCCounterLose",
+            3805550355: "CmnActChangeIn",
+            1669469508: "CmnActChangeOut",
+            4026931601: "CmnActSupportStart",
+            2536107530: "CmnActSupportEnd",
+            1425048334: "CmnActEvenRush",
+            4245059799: "CmnActEvenRushFinish",
+            2422175817: "CmnActEvenRushLose",
+            1784152377: "CmnActDeadChangeIn",
+            1828982669: "NmlAtk5Y",
+            1828982668: "NmlAtk5X",
+            1828982645: "NmlAtk5A",
+            1828982258: "NmlAtk2Y",
+            1828982257: "NmlAtk2X",
+            924157929: "NmlAtkAir5Y",
+            924157928: "NmlAtkAir5X",
+            924157905: "NmlAtkAir5A",
+            1960438944: "NmlAtkDashY",
+            1960438943: "NmlAtkDashX",
+            1462932438: "NmlAtkKC1",
+            1462764065: "NmlAtkBG1",
+            1463213973: "NmlAtkZC1",
+            1463213974: "NmlAtkZC2",
+            1463082590: "NmlAtkSC1",
+            1462988745: "NmlAtkNC1",
+            1462988746: "NmlAtkNC2",
+            1462988747: "NmlAtkNC3",
+            1462969976: "NmlAtkMC1",
+            1462969977: "NmlAtkMC2",
+            1462969978: "NmlAtkMC3",
+            1463120128: "NmlAtkUC1",
+            2056032180: "NmlAtkAirMC1",
+            1462838593: "NmlAtkFC1",
+            2359651517: "UltimateCounter",
+            1004335081: "UltimateCounterAir",
+            1462520793: "NmlAtk5LY",
+            1462520792: "NmlAtk5LX",
+            1462520769: "NmlAtk5LA",
+            1462502001: "NmlAtk4LB",
+            2220446984: "EvenRush",
+            2774042332: "CharChange",
+            2458868642: "ZAssist1",
+            2458868643: "ZAssist2",
+            2458868644: "ZAssist3",
+            2458868645: "ZAssist4",
+            3701639056: "ZAssist4",
+            507776491: "Neutral",
+            3409981997: "FWalk",
+            2000880553: "BWalk",
+            3361127246: "FDash",
+            1952025802: "BDash",
+            3376929930: "FJump",
+            1967828486: "BJump",
+            423401114: "VJump",
+            1893988882: "FHighJump",
+            3431795982: "BHighJump",
+            37727778: "VHighJump",
+            4185647122: "FAirDash",
+            1500761134: "BAirDash",
+            4234501873: "FAirWalk",
+            1549615885: "BAirWalk",
+            2767199363: "Dodge",
+            3159518592: "ZCancel",
+            1044071570: "_NEUTRAL",
+            2157941741: "Assault",
+        },
+    },
+    instructions: Sized({
+        0: (
+            size: 6,
+            name: "beginState",
+            codeBlock: Begin,
+            args: [
+                Enum("STATE_NAME"),
+            ],
+        ),
+        1: (
+            size: 2,
+            name: "endState",
+            codeBlock: End,
+            args: [
+            ],
+        ),
+        2: (
+            size: 38,
+            name: "sprite",
+            codeBlock: NoBlock,
+            args: [
+                String32,
+                Number,
+            ],
+        ),
+        3: (
+            size: 2,
+            name: "endSprite",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        4: (
+            size: 10,
+            name: "if",
+            codeBlock: Begin,
+            args: [
+                AccessedValue,
+            ],
+        ),
+        5: (
+            size: 2,
+            name: "endIf",
+            codeBlock: End,
+            args: [],
+        ),
+        6: (
+            size: 6,
+            name: "beginLabel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        7: (
+            size: 6,
+            name: "gotoLabel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        8: (
+            size: 6,
+            name: "beginSubroutine",
+            codeBlock: Begin,
+            args: [
+                Enum("STATE_NAME"),
+            ],
+        ),
+        9: (
+            size: 2,
+            name: "endSubroutine",
+            codeBlock: End,
+            args: [
+            ],
+        ),
+        10: (
+            size: 6,
+            name: "callSubroutine",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+            ],
+        ),
+        11: (
+            size: 6,
+            name: "uponGotoLabel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        12: (
+            size: 2,
+            name: "exitState",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        13: (
+            size: 6,
+            name: "deactivateObject",
+            codeBlock: NoBlock,
+            args: [
+                Enum("CO_TYPE"),
+            ],
+        ),
+        14: (
+            size: 2,
+            name: "deactivateSelf",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        15: (
+            size: 6,
+            name: "upon",
+            codeBlock: Begin,
+            args: [
+                Enum("UPON"),
+            ],
+        ),
+        16: (
+            size: 2,
+            name: "endUpon",
+            codeBlock: End,
+            args: [],
+        ),
+        17: (
+            size: 6,
+            name: "clearUpon",
+            codeBlock: NoBlock,
+            args: [
+                Enum("UPON"),
+            ],
+        ),
+        18: (
+            size: 14,
+            name: "gotoLabelIf",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                AccessedValue,
+            ],
+        ),
+        19: (
+            size: 14,
+            name: "gotoLabelIfNot",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                AccessedValue,
+            ],
+        ),
+        20: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        21: (
+            size: 6,
+            name: "jumpToState",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+            ],
+        ),
+        28: (
+            size: 10,
+            name: "gotoStateUpon",
+            codeBlock: NoBlock,
+            args: [
+                Enum("UPON"),
+                Enum("STATE_NAME"),
+            ],
+        ),
+        29: (
+            size: 10,
+            name: "gotoLabelUpon",
+            codeBlock: NoBlock,
+            args: [
+                Enum("UPON"),
+                Number,
+            ],
+        ),
+        30: (
+            size: 10,
+            name: "setEventTrigger",
+            codeBlock: NoBlock,
+            args: [
+                Enum("UPON"),
+                Number,
+            ],
+        ),
+        31: (
+            size: 10,
+            name: "setEventTrigger2",
+            codeBlock: NoBlock,
+            args: [
+                Enum("UPON"),
+                Number,
+            ],
+        ),
+        35: (
+            size: 2,
+            name: "endRunOnObject",
+            codeBlock: End,
+            args: [],
+        ),
+        36: (
+            size: 6,
+            name: "runOnObject",
+            codeBlock: Begin,
+            args: [
+                Enum("CO_TYPE"),
+            ],
+        ),
+        38: (
+            size: 10,
+            name: "stackObject",
+            codeBlock: NoBlock,
+            args: [
+                Enum("CO_TYPE"),
+                Enum("CO_TYPE"),
+            ],
+        ),
+        39: (
+            size: 14,
+            name: "op1",
+            codeBlock: NoBlock,
+            args: [
+                Enum("OP_1"),
+                AccessedValue,
+            ],
+        ),
+        40: (
+            size: 22,
+            name: "modifyVar2",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                AccessedValue,
+                AccessedValue,
+            ],
+        ),
+        41: (
+            size: 18,
+            name: "storeValue",
+            codeBlock: NoBlock,
+            args: [
+                AccessedValue,
+                AccessedValue,
+            ],
+        ),
+        42: (
+            size: 18,
+            name: "checkOpponentCharacter",
+            codeBlock: NoBlock,
+            args: [
+                String16,
+            ],
+        ),
+        43: (
+            size: 6,
+            name: "checkInput",
+            codeBlock: NoBlock,
+            args: [
+                Enum("INPUT"),
+            ],
+        ),
+        46: (
+            size: 6,
+            name: "isObjectActive",
+            codeBlock: NoBlock,
+            args: [
+                Enum("CO_TYPE"),
+            ],
+        ),
+        47: (
+            size: 30,
+            name: "modifyVarAfterOperation",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                AccessedValue,
+                AccessedValue,
+                AccessedValue,
+            ],
+        ),
+        49: (
+            size: 22,
+            name: "modifyVar",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                AccessedValue,
+                AccessedValue,
+            ],
+        ),
+        53: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        54: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        55: (
+            size: 10,
+            name: "ifNot",
+            codeBlock: Begin,
+            args: [
+                AccessedValue,
+            ],
+        ),
+        56: (
+            size: 2,
+            name: "endIfNot",
+            codeBlock: End,
+            args: [],
+        ),
+        57: (
+            size: 2,
+            name: "else",
+            codeBlock: Begin,
+            args: [],
+        ),
+        58: (
+            size: 2,
+            name: "endElse",
+            codeBlock: End,
+            args: [],
+        ),
+        63: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        64: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        107: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        113: (
+            size: 22,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        200: (
+            size: 6,
+            name: "setPosX",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        202: (
+            size: 6,
+            name: "setPosXRaw",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        204: (
+            size: 10,
+            name: "addPosXRaw",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        206: (
+            size: 2,
+            name: "pushPosX",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        207: (
+            size: 2,
+            name: "popPosX",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        212: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        213: (
+            size: 6,
+            name: "setSpeedX",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        214: (
+            size: 6,
+            name: "setSpeedXRaw",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        215: (
+            size: 6,
+            name: "addSpeedX",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        216: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        217: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        218: (
+            size: 2,
+            name: "pushSpeedX",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        219: (
+            size: 2,
+            name: "popSpeedX",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        222: (
+            size: 6,
+            name: "setSpeedY",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        226: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        230: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        231: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        232: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        233: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        234: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        235: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        236: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        237: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        239: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        241: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        245: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        248: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        249: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        250: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        251: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        257: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        258: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        260: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        262: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        263: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        264: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        269: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        270: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        272: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        277: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        278: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        280: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        285: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        287: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        295: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        297: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        309: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        310: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        312: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        313: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        324: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        400: (
+            size: 2,
+            name: "enableHit",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        401: (
+            size: 2,
+            name: "disableHit",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        402: (
+            size: 2,
+            name: "disableHitForSprite",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        403: (
+            size: 6,
+            name: "disableHitboxes",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        404: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        405: (
+            size: 2,
+            name: "flipSprite",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        406: (
+            size: 2,
+            name: "faceOpponent",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        410: (
+            size: 2,
+            name: "projectileAttack",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        415: (
+            size: 6,
+            name: "setXCollisionFromOrigin",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        416: (
+            size: 6,
+            name: "setYCollisionFromOrigin",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        417: (
+            size: 6,
+            name: "enableCollision",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        418: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        419: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        420: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        424: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        425: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        437: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        439: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        440: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        441: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        445: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        452: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        456: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        457: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        458: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        459: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        461: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        462: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        465: (
+            size: 6,
+            name: "addMeter",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        601: (
+            size: 6,
+            name: "setAlpha",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        602: (
+            size: 6,
+            name: "addAlpha",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        603: (
+            size: 6,
+            name: "multiplyAlpha",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        604: (
+            size: 6,
+            name: "setAlphaPercent",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        605: (
+            size: 6,
+            name: "addAlphaPercent",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        606: (
+            size: 6,
+            name: "multiplyAlphaPercent",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        628: (
+            size: 14,
+            name: "screenShake",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        629: (
+            size: 6,
+            name: "afterimageTotalCount",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        670: (
+            size: 6,
+            name: "afterimageSpawnInterval",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        671: (
+            size: 6,
+            name: "afterimageCount",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        672: (
+            size: 6,
+            name: "afterimagePrimaryColor",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        673: (
+            size: 18,
+            name: "afterimageSecondaryColor",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        674: (
+            size: 18,
+            name: "afterimagePrimaryColorMask",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        675: (
+            size: 18,
+            name: "afterimageSecondaryColorMask",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        800: (
+            size: 10,
+            name: "createObject",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+                Number,
+            ],
+        ),
+        801: (
+            size: 14,
+            name: "createObjectAtOffset",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+                Number,
+                Number,
+            ],
+        ),
+        802: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        803: (
+            size: 18,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        806: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Enum("STATE_NAME"),
+                Number,
+            ],
+        ),
+        813: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        816: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        817: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        866: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        867: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1000: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1001: (
+            size: 22,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1201: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1400: (
+            size: 34,
+            name: "cmnSfx",
+            codeBlock: NoBlock,
+            args: [
+                String32,
+            ],
+        ),
+        1401: (
+            size: 34,
+            name: "charaSfx",
+            codeBlock: NoBlock,
+            args: [
+                String32,
+            ],
+        ),
+        1402: (
+            size: 18,
+            name: "voiceLine",
+            codeBlock: NoBlock,
+            args: [
+                String16,
+            ],
+        ),
+        1407: (
+            size: 82,
+            name: "randomVoiceLine",
+            codeBlock: NoBlock,
+            args: [
+                String16,
+                Number,
+                String16,
+                Number,
+                String16,
+                Number,
+                String16,
+                Number,
+            ],
+        ),
+        1408: (
+            size: 82,
+            name: "randomVoiceLine2",
+            codeBlock: NoBlock,
+            args: [
+                String16,
+                Number,
+                String16,
+                Number,
+                String16,
+                Number,
+                String16,
+                Number,
+            ],
+        ),
+        1410: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1411: (
+            size: 22,
+            name: "setupVoice",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                String16,
+            ],
+        ),
+        1412: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1415: (
+            size: 34,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                String32,
+            ],
+        ),
+        1418: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1421: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1423: (
+            size: 34,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                String32,
+            ],
+        ),
+        1425: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1600: (
+            size: 14,
+            name: "landingEffect",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1601: (
+            size: 10,
+            name: "jumpEffect",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1604: (
+            size: 14,
+            name: "knockdownEffect",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1607: (
+            size: 18,
+            name: "preDashEffect",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1610: (
+            size: 14,
+            name: "dashStopEFfect",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1611: (
+            size: 22,
+            name: "footstepEffect",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1612: (
+            size: 22,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1613: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1614: (
+            size: 18,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1615: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1616: (
+            size: 18,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1617: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1618: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1619: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1620: (
+            size: 18,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1621: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1623: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        1628: (
+            size: 22,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1633: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1634: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1635: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1636: (
+            size: 26,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1637: (
+            size: 26,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1638: (
+            size: 22,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1639: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1644: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1647: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1652: (
+            size: 18,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1654: (
+            size: 42,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1655: (
+            size: 46,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1658: (
+            size: 50,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1662: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1664: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1663: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        1669: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1671: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1672: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1673: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1674: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1675: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1676: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1678: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1679: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1680: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1681: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1684: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1685: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1686: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1687: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1688: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1689: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1690: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1692: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1693: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1694: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1695: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1697: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1702: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1708: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1709: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1712: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        1801: (
+            size: 6,
+            name: "attackType",
+            codeBlock: NoBlock,
+            args: [
+                Enum("ATTACK_TYPE"),
+            ],
+        ),
+        1802: (
+            size: 6,
+            name: "attackLevel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1803: (
+            size: 6,
+            name: "damage",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1805: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1806: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1808: (
+            size: 22,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        1816: (
+            size: 6,
+            name: "slashHitEffect",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1817: (
+            size: 6,
+            name: "fireHitEffect",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1822: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1824: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1872: (
+            size: 6,
+            name: "hitAirPushbackX",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1874: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1884: (
+            size: 6,
+            name: "hitAirPushbackY",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1886: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1896: (
+            size: 6,
+            name: "hitGravity",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1897: (
+            size: 2,
+            name: "resetHitGravity",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        1898: (
+            size: 6,
+            name: "counterHitGravity",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1908: (
+            size: 6,
+            name: "wallBounceSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1910: (
+            size: 6,
+            name: "counterWallBounceSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1920: (
+            size: 6,
+            name: "groundBounceHeight",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1932: (
+            size: 6,
+            name: "timeBeforeCrumple",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1944: (
+            size: 6,
+            name: "staggerDuration",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1956: (
+            size: 6,
+            name: "hitstunDuration",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1958: (
+            size: 6,
+            name: "counterHitstunDuration",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1968: (
+            size: 6,
+            name: "untechDuration",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1970: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1980: (
+            size: 6,
+            name: "wallBounceCount",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1982: (
+            size: 6,
+            name: "counterWallBounceCount",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1992: (
+            size: 6,
+            name: "groundBounceCount",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        1994: (
+            size: 6,
+            name: "counterGroundBounceCount",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2004: (
+            size: 6,
+            name: "groundSlideUntech",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2016: (
+            size: 6,
+            name: "hitPushbackX",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2076: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2112: (
+            size: 6,
+            name: "setHardKnockdown",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2114: (
+            size: 6,
+            name: "setCounterHardKnockdown",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2124: (
+            size: 6,
+            name: "groundHitAction",
+            codeBlock: NoBlock,
+            args: [
+                Enum("HIT_ACTION"),
+            ],
+        ),
+        2126: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2136: (
+            size: 6,
+            name: "airHitAction",
+            codeBlock: NoBlock,
+            args: [
+                Enum("HIT_ACTION"),
+            ],
+        ),
+        2138: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2148: (
+            size: 6,
+            name: "enableWallStick",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2160: (
+            size: 6,
+            name: "bounceUntech",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2162: (
+            size: 6,
+            name: "counterBounceUntech",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2200: (
+            size: 6,
+            name: "hitstop",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2201: (
+            size: 14,
+            name: "enemyHitstopAddition",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        2202: (
+            size: 6,
+            name: "throwLockDuration",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2223: (
+            size: 6,
+            name: "hitAnywhereOnScreen",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2228: (
+            size: 6,
+            name: "blockstunDuration",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2230: (
+            size: 6,
+            name: "guardCrushDuration",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2231: (
+            size: 6,
+            name: "chipDamagePercent",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2232: (
+            size: 18,
+            name: "directionCheck",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        2233: (
+            size: 6,
+            name: "projectileLevel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2235: (
+            size: 6,
+            name: "hitLow",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2236: (
+            size: 6,
+            name: "hitOverhead",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2237: (
+            size: 6,
+            name: "hitAirUnblockable",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2243: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2245: (
+            size: 6,
+            name: "onlyHitGrounded",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2246: (
+            size: 6,
+            name: "onlyHitAirborne",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2250: (
+            size: 38,
+            name: "setHitspark",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                String32,
+            ],
+        ),
+        2254: (
+            size: 6,
+            name: "throwRange",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2258: (
+            size: 22,
+            name: "attackAttributes",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        2260: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2263: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2264: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2266: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2269: (
+            size: 6,
+            name: "canOnlyDamageWithState",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+            ],
+        ),
+        2282: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2287: (
+            size: 10,
+            name: "guardCrush",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        2289: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2292: (
+            size: 6,
+            name: "prorateOnce",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2294: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2297: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        2307: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2308: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2400: (
+            size: 6,
+            name: "walkFSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2401: (
+            size: 6,
+            name: "walkBSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2402: (
+            size: 6,
+            name: "fDashInitSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2403: (
+            size: 6,
+            name: "fDashAccel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2404: (
+            size: 6,
+            name: "fDashMaxSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2405: (
+            size: 6,
+            name: "jumpHeight",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2406: (
+            size: 6,
+            name: "superJumpHeight",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2407: (
+            size: 6,
+            name: "jumpForwardSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2408: (
+            size: 6,
+            name: "superJumpForwardSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2409: (
+            size: 6,
+            name: "jumpBackwardSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2410: (
+            size: 6,
+            name: "superJumpBackwardSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2411: (
+            size: 6,
+            name: "initGravity",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2412: (
+            size: 6,
+            name: "doubleJumpCount",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2413: (
+            size: 6,
+            name: "airDashCount",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2414: (
+            size: 6,
+            name: "enableDash",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2415: (
+            size: 6,
+            name: "health",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2416: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2417: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        2418: (
+            size: 6,
+            name: "comboRate",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2419: (
+            size: 38,
+            name: "setDamageSprite",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                String32,
+            ],
+        ),
+        2420: (
+            size: 18,
+            name: "charaName",
+            codeBlock: NoBlock,
+            args: [
+                String16,
+            ],
+        ),
+        2421: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        2425: (
+            size: 6,
+            name: "footstepType",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2431: (
+            size: 6,
+            name: "meterGainFactor",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2432: (
+            size: 6,
+            name: "jumpStartup",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2433: (
+            size: 26,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        2434: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2435: (
+            size: 6,
+            name: "airFDashTime",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2436: (
+            size: 6,
+            name: "airBDashTime",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2438: (
+            size: 6,
+            name: "airBackDashGravity",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2439: (
+            size: 6,
+            name: "airFDashSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2440: (
+            size: 6,
+            name: "airBDashSpeed",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2445: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2451: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2452: (
+            size: 6,
+            name: "starterRating",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2453: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2454: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2455: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2611: (
+            size: 6,
+            name: "enableFAirDash",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2614: (
+            size: 6,
+            name: "enableNormals",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2640: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2646: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2801: (
+            size: 10,
+            name: "registerMove",
+            codeBlock: Begin,
+            args: [
+                Enum("STATE_NAME"),
+                Enum("INPUT_TYPE"),
+            ],
+        ),
+        2802: (
+            size: 2,
+            name: "endRegisterMove",
+            codeBlock: End,
+            args: [
+            ],
+        ),
+        2803: (
+            size: 6,
+            name: "addMoveCondition",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2805: (
+            size: 6,
+            name: "isFollowupMove",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2809: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2812: (
+            size: 6,
+            name: "moveInput",
+            codeBlock: NoBlock,
+            args: [
+                Enum("INPUT"),
+            ],
+        ),
+        2815: (
+            size: 26,
+            name: "cpuMoveRange",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        2818: (
+            size: 18,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        2820: (
+            size: 6,
+            name: "allowSpecialCancel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2824: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        2826: (
+            size: 6,
+            name: "moveConditionCheckSubroutine",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+            ],
+        ),
+        2870: (
+            size: 6,
+            name: "addWhiffCancelOption",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+            ],
+        ),
+        2871: (
+            size: 6,
+            name: "addChainCancelOption",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+            ],
+        ),
+        2878: (
+            size: 6,
+            name: "enableWhiffCancel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2879: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2880: (
+            size: 6,
+            name: "jumpCancel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2881: (
+            size: 6,
+            name: "specialCancel",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2883: (
+            size: 6,
+            name: "jumpCancelHitOnly",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2884: (
+            size: 6,
+            name: "specialCancelHitOnly",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2888: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2889: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2890: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        2891: (
+            size: 6,
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        3000: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        3005: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        3006: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        3008: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3009: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3010: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3012: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        3013: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        3015: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        3016: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        3021: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        3400: (
+            size: 2,
+            name: "standNormal",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3401: (
+            size: 2,
+            name: "airNormal",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3402: (
+            size: 2,
+            name: "standSpecial",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3403: (
+            size: 2,
+            name: "airSpecial",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3406: (
+            size: 2,
+            name: "crouchingNormal",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3411: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        3412: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        3413: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        3414: (
+            size: 18,
+            name: "throw",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        3415: (
+            size: 14,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        3417: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3419: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3420: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3423: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3424: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        3981: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4205: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4207: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        4211: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4212: (
+            size: 10,
+            name: "sendSignalByName",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+                Number,
+            ],
+        ),
+        4404: (
+            size: 10,
+            name: "setLandingRecovery",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        4407: (
+            size: 6,
+            name: "setInvulnerable",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4408: (
+            size: 6,
+            name: "invulnDuration",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4410: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4419: (
+            size: 22,
+            name: "attributeInvuln",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        4420: (
+            size: 6,
+            name: "enableGuardPoint",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4422: (
+            size: 6,
+            name: "setStrikeInvulnerable",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4423: (
+            size: 6,
+            name: "setProjectileInvulnerable",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4603: (
+            size: 34,
+            name: "initializeCharacterResource",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        4604: (
+            size: 10,
+            name: "hideGauge",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        4615: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4617: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4622: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4624: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4625: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4629: (
+            size: 2,
+            name: "disableStateHit",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        4632: (
+            size: 38,
+            name: "callPrivateFunction",
+            codeBlock: NoBlock,
+            args: [
+                Enum("STATE_NAME"),
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        4680: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4681: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4689: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4747: (
+            size: 38,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+                Number,
+            ],
+        ),
+        4748: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+            ],
+        ),
+        4755: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        4756: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4769: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4783: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4789: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4790: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4792: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        4793: (
+            size: 10,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+                Number,
+            ],
+        ),
+        4794: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4797: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4798: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4799: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4800: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4801: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4803: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4804: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4805: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4806: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        4807: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        4808: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4809: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        4816: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        4817: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        4827: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4828: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4829: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4830: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4831: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4832: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4833: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4839: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4841: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4851: (
+            size: 2,
+            name: "",
+            codeBlock: NoBlock,
+            args: [],
+        ),
+        4852: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+        4854: (
+            size: 6,
+            name: "",
+            codeBlock: NoBlock,
+            args: [
+                Number,
+            ],
+        ),
+    }),
+)

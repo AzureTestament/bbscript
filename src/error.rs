@@ -2,9 +2,9 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum BBScriptError {
-    #[error("Failed to open game config file `{0}` with error `{1}`")]
+    #[error("Failed to open game DB file `{0}` with error `{1}`")]
     ConfigOpenError(String, String),
-    #[error("Could not decode game config file `{0}`")]
+    #[error("Could not decode game DB file `{0}`")]
     ConfigInvalid(String),
     #[error("Config contains multiple instances of an instruction named `{0}`")]
     ConfigDuplicateName(String),
@@ -15,11 +15,11 @@ pub enum BBScriptError {
     #[error("Unknown instruction with name `{0}`")]
     UnknownInstructionName(String),
     #[error("Unknown instruction with ID {0} (hex: {0:#X})")]
-    UnknownInstructionID(u32),
+    UnknownInstructionID(u16),
     #[error("No variable ID associated with `{0}` in config")]
     NoVariableName(String),
     #[error("No enum associated with index argument {0} in instruction {1}`")]
-    NoEnum(usize, u32),
+    NoEnum(usize, u16),
     #[error("Argument tried to access nonexistant enum `{0}`")]
     BadEnumReference(String),
     #[error("No value associated with variant `{0}` in enum `{1}`")]

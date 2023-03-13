@@ -1,5 +1,7 @@
 #![allow(clippy::upper_case_acronyms)]
 
+use std::{hash::Hash, collections::BTreeMap};
+
 use crate::{
     error::BBScriptError,
     game_config::{ArgType, GenericInstruction, ScriptConfig, UnsizedInstruction},
@@ -23,13 +25,13 @@ pub fn rebuild_bbscript(db: ScriptConfig, script: String) -> Result<Bytes, BBScr
 }
 
 struct JumpTable {
-    id_list: Vec<u32>,
-    entries: HashMap<u32, Vec<u8>>,
+    id_list: Vec<u16>,
+    entries: HashMap<u16, Vec<u8>>,
 }
 
 impl JumpTable {
     #[inline]
-    pub fn new(id_list: Vec<u32>) -> Self {
+    pub fn new(id_list: Vec<u16>) -> Self {
         Self {
             id_list,
             entries: HashMap::new(),
@@ -37,23 +39,49 @@ impl JumpTable {
     }
 
     #[inline]
-    pub fn is_entry_id(&self, id: u32) -> bool {
+    pub fn is_entry_id(&self, id: u16) -> bool {
         self.id_list.contains(&id)
     }
 
     #[inline]
-    pub fn add_table_entry(&mut self, id: u32, offset: u32, jump_name: &Bytes) {
+    pub fn add_table_entry(&mut self, id: u16, offset: u32, jump_name: u32) {
         assert!(self.is_entry_id(id));
-        assert!(jump_name.len() == ArgType::STRING32_SIZE);
 
         let table = self.entries.entry(id).or_default();
 
-        table.extend_from_slice(&jump_name);
+        table.write_u32::<LE>(jump_name).unwrap();
         table.write_u32::<LE>(offset).unwrap();
+    }
+    
+    fn sort_table(&mut self) {
+        let mut new_entries: HashMap<u16, Vec<u8>> = HashMap::new();
+        for id in &self.id_list {
+            let mut map: BTreeMap<u32, u32> = BTreeMap::new();
+            let entry = self.entries.entry(*id).or_default();
+            for x in 0..entry.len() / 8 {
+                let key_bytes: [u8; 4] = entry[x * 8..x * 8 + 4].try_into().expect("slice with incorrect length");
+                let key = u32::from_le_bytes(key_bytes);
+                let value_bytes: [u8; 4] = entry[x * 8 + 4..x * 8 + 8].try_into().expect("slice with incorrect length");
+                let value = u32::from_le_bytes(value_bytes);
+                map.insert(key, value);
+            }
+
+            let mut new_entry: Vec<u8> = Vec::new();
+            for (key, value) in map.iter() {
+                new_entry.write_u32::<LE>(*key).unwrap();
+                new_entry.write_u32::<LE>(*value).unwrap();
+            }
+
+            new_entries.insert(*id, new_entry);
+        }
+        self.entries = new_entries;
     }
 
     pub fn to_table_bytes(mut self) -> Vec<u8> {
-        const JUMP_ENTRY_LENGTH: usize = 0x24;
+        self.sort_table();
+
+        const JUMP_ENTRY_LENGTH: usize = 0x8;
+        
         let mut result = Vec::new();
 
         for id in &self.id_list {
@@ -103,17 +131,17 @@ fn assemble_script(program: Vec<BBSFunction>, db: &ScriptConfig) -> Result<Bytes
 
         // if the instruction is sized, check that its size matches the config entry
         if let Some(instruction_size) = instruction_info.size() {
-            if instruction.total_size() != instruction_size {
+            if instruction.total_size() != instruction_size + 6 {
                 return Err(BBScriptError::IncorrectFunctionSize(
                     instruction.name.to_string(),
-                    instruction.total_size(),
+                    instruction.total_size() - 6,
                     instruction_size as usize,
                 ));
             }
         }
 
         script_buffer
-            .write_u32::<LE>(instruction_info.id())
+            .write_u16::<LE>(instruction_info.id())
             .unwrap();
 
         // if dynamically sized, the function size is written after the ID
@@ -125,15 +153,40 @@ fn assemble_script(program: Vec<BBSFunction>, db: &ScriptConfig) -> Result<Bytes
         }
 
         if jump_tables.is_entry_id(instruction_info.id()) {
-            if let Some(ParserValue::String32(name)) = instruction.args.get(0) {
-                jump_tables.add_table_entry(instruction_info.id(), offset, name);
+            match instruction.args.get(1) {
+                Some(ParserValue::Named(name)) => {
+                    let enum_name =
+                    if let Some(ArgType::Enum(name)) = instruction_info.args().get(0) {
+                        name.to_string()
+                    } else {
+                        return Err(BBScriptError::NoEnum(0, instruction_info.id()));
+                    };
+                    if let Some(value) = db.get_enum_value(enum_name.clone(), name.to_string()) {
+                        jump_tables.add_table_entry(instruction_info.id(), offset, value as u32);
+                    } else {
+                        return Err(BBScriptError::NoAssociatedValue(
+                            name.to_string(),
+                            enum_name,
+                        ));
+                    }
+                },
+                Some(ParserValue::Number(name)) => {
+                    jump_tables.add_table_entry(instruction_info.id(), offset, *name as u32);
+                },
+                None => panic!("Entry ID function has no associated name!"),
+                _ => panic!("Entry ID function has unknown argument!"),
             }
         }
 
-        for (index, arg) in instruction.args.iter().enumerate() {
+        match instruction.args[0] {
+            ParserValue::Number(num) => script_buffer.write_u16::<LE>(num as u16).unwrap(),
+            _ => panic!("Could not find arg types!")
+        };
+
+        for (index, arg) in instruction.args.iter().enumerate().skip(1) {
             log::trace!(
                 "writing arg {} of value `{:?}` from instruction `{}`",
-                index,
+                index - 1,
                 arg,
                 &instruction.name
             );
@@ -146,14 +199,14 @@ fn assemble_script(program: Vec<BBSFunction>, db: &ScriptConfig) -> Result<Bytes
                 &ParserValue::Number(num) => script_buffer.write_i32::<LE>(num).unwrap(),
                 ParserValue::Named(variant) => {
                     let enum_name =
-                        if let Some(ArgType::Enum(name)) = instruction_info.args().get(index) {
+                        if let Some(ArgType::Enum(name)) = instruction_info.args().get(index - 1) {
                             name.to_string()
                         } else {
-                            return Err(BBScriptError::NoEnum(index, instruction_info.id()));
+                            return Err(BBScriptError::NoEnum(index - 1, instruction_info.id()));
                         };
 
                     if let Some(value) = db.get_enum_value(enum_name.clone(), variant.to_string()) {
-                        script_buffer.write_i32::<LE>(value).unwrap();
+                        script_buffer.write_u32::<LE>(value).unwrap();
                     } else {
                         return Err(BBScriptError::NoAssociatedValue(
                             variant.to_string(),
